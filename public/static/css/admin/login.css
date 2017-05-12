@@ -1,0 +1,40 @@
+/* 登录 */
+
+/* 全局样式 */
+body {
+    font-size: 16px;
+    color: #333;
+}
+
+/* 登录盒子 */
+#login-box {
+    width: 300px;
+    height: 350px;
+    border: 1px solid #e6e6e6;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -225px;
+    margin-left: -200px;
+    padding: 50px;
+}
+#login-box h1 {
+    font-size: 24px;
+    text-align: center;
+}
+/* 登录表单 */
+#loginForm {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+#login-box .layui-input-block {
+    margin-left: 0;
+}
+#login-box .layui-input-inline {
+    width: 135px;
+}
+/* 登录按钮 */
+#loginBtn {
+    width: 100%;
+    font-size: 16px;
+}

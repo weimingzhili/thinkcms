@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ThinkCMS内容管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/css/admin/login.css" media="all">
+  </head>
+  <body>
+    <div id="login-box">
+      <h1>ThinkCMS内容管理系统</h1>
+      <hr>
+      请登录
+      <form class="layui-form" id="loginForm" role="form">
+        <!-- 账号 -->
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <input type="text" name="account" class="layui-input" placeholder="请输入账号" lay-verify="required|account">
+          </div>
+        </div>
+        <!-- 密码 -->
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <input type="password" name="password" class="layui-input" placeholder="请输入密码" lay-verify="required">
+          </div>
+        </div>
+        <!-- 验证码 -->
+        <div class="layui-form-item">
+          <div class="layui-inline">
+            <div class="layui-input-inline">
+              <input type="text" name="captcha" class="layui-input" id="captcha" placeholder="请输入验证码" lay-verify="required|captcha">
+            </div>
+            <div class="layui-input-inline">
+              <a href="javascript:void(0);" title="点击刷新验证码"><img src="{:captcha_src()}" id="captchaImg" alt="验证码"></a>
+            </div>
+          </div>
+        </div>
+        <!-- 登录按钮 -->
+        <button type="submit" class="layui-btn" id="loginBtn" lay-submit lay-filter="loginBtn">登 录</button>
+      </form>
+      <hr>
+    </div>
+
+  <script src="__PUBLIC__/layui/lay/dest/layui.all.js" charset="utf-8"></script>
+  <script src="__PUBLIC__/js/jquery-1.11.3.min.js" charset="utf-8"></script>
+  <script src="__PUBLIC__/js/admin/common.js" charset="utf-8"></script>
+  <script src="__PUBLIC__/js/admin/login.js"></script>
+  </body>
+</html>

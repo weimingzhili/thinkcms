@@ -139,7 +139,7 @@ return [
     ],
 
     // 视图输出字符串内容替换
-    'view_replace_str'       => [],
+    'view_replace_str'       => ['__PUBLIC__' => '/static'],
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
     'dispatch_error_tmpl'    => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
@@ -230,10 +230,31 @@ return [
         'setcookie' => true,
     ],
 
-    //分页配置
+    // 分页配置
     'paginate'               => [
         'type'      => 'bootstrap',
         'var_page'  => 'page',
         'list_rows' => 15,
     ],
+
+    // 验证码
+    'captcha'  => [
+        // 验证码字符集合
+        'codeSet'  => '2345678abcdefhijkmnpqrstuvwxyzABCDEFGHJKLMNPQRTUVWXY',
+        // 验证码字体大小(px)
+        'fontSize' => 20,
+        // 是否画混淆曲线
+        'useCurve' => false,
+        // 验证码图片高度
+        'imageH'   => 38,
+        // 验证码图片宽度
+        'imageW'   => 155,
+        // 验证码位数
+        'length'   => 4,
+        // 验证成功后是否重置
+        'reset'    => true
+    ],
+
+    // 加密前缀
+    'ENC_PRE' => 'think_',
 ];
