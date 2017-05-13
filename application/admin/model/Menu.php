@@ -98,4 +98,23 @@ class Menu extends Model
 
         return true;
     }
+
+    /**
+     * 更新状态
+     * @access public
+     * @param array $data 更新数据
+     * @return bool
+     * @throws Exception
+     */
+    public function updateStatus($data)
+    {
+        // 更新记录
+        $result = $this->validate('Menu.setStatus')
+                  ->save($data, ['menu_id' => $data['menu_id']]);
+        if($result === false) {
+            throw new Exception('更新状态失败');
+        }
+
+        return true;
+    }
 }

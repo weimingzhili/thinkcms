@@ -87,4 +87,36 @@ class Menu extends Base
             return ['status' => 0, 'message' => $e->getMessage()];
         }
     }
+
+    /**
+     * 设置状态
+     * @access public
+     * @param Request $request 请求对象
+     * @return array
+     */
+    public function setStatus(Request $request)
+    {
+        // 请求参数
+        $param['menu_id'] = $request->param('menu_id', 0, 'intval'); // 菜单主键
+        $param['status']  = $request->param('status', 0, 'intval');  // 状态
+        // 验证参数
+        $checkRes = $this->validate($param, 'Menu.setStatus');
+        if($checkRes !== true) {
+            return ['status' => 0, 'message' => $checkRes];
+        }
+
+        // 更新状态
+        try {
+            $menuModel = Loader::model('Menu');
+            $result    = $menuModel->updateStatus($param);
+            if($result === true) {
+                return ['status' => 1, 'message' => '操作成功'];
+            }
+
+            return ['status' => 0, 'message' => '操作失败'];
+        } catch (Exception $e) {
+            // 处理异常
+            return ['status' => 0, 'message' => $e->getMessage()];
+        }
+    }
 }
