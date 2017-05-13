@@ -1,0 +1,53 @@
+/* 基础样式 */
+
+/* 全局样式 */
+body {
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* 顶部导航 */
+#topNav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 1px 1px #1aa094;
+}
+#topNav ul {
+    border-radius: 0;
+}
+.brand {
+    font-size: 20px;
+}
+.admin-menu {
+    float: right;
+}
+.admin-menu > a {
+    font-size: 18px;
+}
+
+/* 侧栏导航 */
+#asideNav ul {
+    border-radius: 0;
+    margin-top: 61px;
+    margin-bottom: 60px;
+}
+
+/* 主内容 */
+#main {
+    margin-top: 60px;
+    margin-left: 200px;
+}
+
+/* 页脚 */
+#footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: 60px;
+    line-height: 60px;
+}
+#footer p {
+    text-align: center;
+}

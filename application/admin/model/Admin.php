@@ -13,6 +13,28 @@ use think\Model;
 class Admin extends Model
 {
     /**
+     * 最后登录时间获取器
+     * @access public
+     * @param int $last_login_time 最后登录的时间戳
+     * @return string
+     */
+    public function getLastLoginTimeAttr($last_login_time)
+    {
+        return !empty($last_login_time) ? date('Y年n月j日G时i分', $last_login_time) : '未知';
+    }
+
+    /**
+     * 最后登录ip获取器
+     * @access public
+     * @param string $last_login_ip 最后登录的ip
+     * @return string
+     */
+    public function getLastLoginIpAttr($last_login_ip)
+    {
+        return !empty($last_login_ip) ? $last_login_ip : '未知';
+    }
+
+    /**
      * 根据账号获取管理员
      * @access public
      * @param string $account 账号
@@ -67,5 +89,17 @@ class Admin extends Model
         }
 
         return true;
+    }
+
+    /**
+     * 获取管理员总数
+     * @access public
+     * @return int
+     */
+    public function getAdminTotal()
+    {
+        $total = self::where(['status' => 1])->count();
+
+        return $total;
     }
 }

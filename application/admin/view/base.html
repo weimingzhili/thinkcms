@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ThinkCMS内容管理系统</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/css/admin/base.css" media="all">
+    {block name="css"}{/block}
+  </head>
+  <body>
+    <!-- 顶部导航 -->
+    <header>
+      <nav id="topNav">
+        <ul class="layui-nav">
+          <li class="layui-nav-item"><a href="" class="brand">ThinkCMS内容管理系统</a></li>
+          <li class="layui-nav-item admin-menu">
+            <a href="javascript:void(0);">{$account}</a>
+            <dl class="layui-nav-child">
+              <dd><a href="">个人中心</a></dd>
+              <dd><a href="{:url('admin/Login/logout')}">注销</a></dd>
+            </dl>
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- 侧栏导航 -->
+    <aside>
+      <nav id="asideNav">
+        <ul class="layui-nav layui-nav-tree layui-nav-side">
+          <li class="layui-nav-item layui-this"><a href="">首页</a></li>
+          <li class="layui-nav-item"><a href="">菜单管理</a></li>
+          <li class="layui-nav-item"><a href="">文章管理</a></li>
+          <li class="layui-nav-item"><a href="">推荐位管理</a></li>
+          <li class="layui-nav-item"><a href="">推荐位内容管理</a></li>
+          <li class="layui-nav-item"><a href="">管理员管理</a></li>
+          <li class="layui-nav-item"><a href="">系统设置</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- 主内容 -->
+    <div id="main">
+      {block name="main"}{/block}
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="layui-bg-gray" id="footer">
+      <p>&copy; 2017 ThinkCMS Apache license</p>
+    </footer>
+
+    <script src="__PUBLIC__/js/jquery-1.11.3.min.js" charset="utf-8"></script>
+    <script src="__PUBLIC__/layui/lay/dest/layui.all.js" charset="utf-8"></script>
+    <script src="__PUBLIC__/js/admin/common.js" charset="utf-8"></script>
+    <script src="__PUBLIC__/js/admin/base.js" charset="utf-8"></script>
+    {block name="js"}{/block}
+  </body>
+</html>

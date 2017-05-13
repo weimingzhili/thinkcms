@@ -1,0 +1,14 @@
+/* 首页 */
+
+#main {
+    padding: 30px;
+}
+#main h1 {
+    font-size: 28px;
+}
+#main p {
+    text-indent: 2em;
+}
+#main table {
+    margin-top: 30px;
+}
