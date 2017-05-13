@@ -1,0 +1,101 @@
+{extend name="base" /}
+
+{block name="css"}
+  <link rel="stylesheet" href="__PUBLIC__/css/admin/menu/menu_index.css" media="all">
+{/block}
+
+{block name="main"}
+  <!-- 面包屑导航 -->
+  <span class="layui-breadcrumb">
+    <a href="{:url('admin/Menu/index')}" title="菜单管理">菜单管理</a>
+    <a><cite>菜单列表</cite></a>
+  </span>
+  <hr>
+  <!-- 筛选表单 -->
+  <form action="" class="layui-form" role="form">
+    <div class="layui-form-item">
+      <div class="layui-inline">
+        <label class="layui-form-label">菜单类型</label>
+        <div class="layui-input-inline">
+          <select name="type" title="菜单类型下拉选择框" >
+            <option value="">请选择菜单类型</option>
+            <option value="1" {eq name="type" value="1"}selected{/eq}>前台导航</option>
+            <option value="2" {eq name="type" value="2"}selected{/eq}>后台菜单</option>
+          </select>
+        </div>
+        <div class="layui-input-inline">
+          <button type="submit" class="layui-btn"><i class="layui-icon">&#xe615;</i> 筛选</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- 展示表单 -->
+  <form class="layui-form" role="form">
+    <!-- 展示表格 -->
+    <table class="layui-table">
+      <thead>
+      <tr>
+        <th>排序</th>
+        <th>序号</th>
+        <th>菜单名称</th>
+        <th>模块</th>
+        <th>控制器</th>
+        <th>方法</th>
+        <th>类型</th>
+        <th>状态</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      {volist name="pageList" id="menu"}
+        <tr>
+        <td>
+          <input type="number" class="layui-input list-order-input" name="list_order" value="{$menu->list_order}" title="排序" >
+        </td>
+        <td>{$menu->menu_id}</td>
+        <td>{$menu->menu_name}</td>
+        <td>{$menu->module}</td>
+        <td>{$menu->controller}</td>
+        <td>{$menu->action}</td>
+        <td>{$menu->type}</td>
+        <td>{$menu->status}</td>
+        <td>
+          <div class="layui-btn-group">
+            <!-- 编辑 -->
+            <button type="button" class="layui-btn layui-btn-small layui-btn-primary">
+              <i class="layui-icon">&#xe642;</i> 编辑
+            </button>
+            <!-- 启用 -->
+            <button type="button" class="layui-btn layui-btn-small layui-btn-primary">
+              <i class="layui-icon">&#xe616;</i> 启用
+            </button>
+            <!-- 禁用 -->
+            <button type="button" class="layui-btn layui-btn-small layui-btn-primary">
+              <i class="layui-icon">&#x1007;</i> 禁用
+            </button>
+            <!-- 删除 -->
+            <button type="button" class="layui-btn layui-btn-small layui-btn-primary">
+              <i class="layui-icon">&#xe640;</i> 删除
+            </button>
+          </div>
+        </td>
+      </tr>
+      {/volist}
+      </tbody>
+    </table>
+    <!-- 添加 -->
+    <button type="button" class="layui-btn layui-btn-normal">
+      <i class="layui-icon">&#xe654;</i> 添加
+    </button>
+    <!-- 排序 -->
+    <button type="button" class="layui-btn layui-btn-primary">排序</button>
+    <!-- 分页导航 -->
+    <nav>
+      {$pageNav}
+    </nav>
+  </form>
+{/block}
+
+{block name="js"}
+<script src="__PUBLIC__/js/admin/menu/menu_index.js" charset="utf-8"></script>
+{/block}

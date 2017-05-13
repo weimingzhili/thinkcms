@@ -98,6 +98,7 @@ class Admin extends Model
      */
     public function getAdminTotal()
     {
+        // 统计记录
         $total = self::where(['status' => 1])->count();
 
         return $total;

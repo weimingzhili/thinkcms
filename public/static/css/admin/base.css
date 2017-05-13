@@ -13,6 +13,7 @@ body {
     top: 0;
     width: 100%;
     box-shadow: 0 1px 1px #1aa094;
+    z-index: 999;
 }
 #topNav ul {
     border-radius: 0;
@@ -37,7 +38,9 @@ body {
 /* 主内容 */
 #main {
     margin-top: 60px;
+    margin-bottom: 60px;
     margin-left: 200px;
+    padding: 30px;
 }
 
 /* 页脚 */

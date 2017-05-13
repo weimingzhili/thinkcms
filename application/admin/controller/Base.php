@@ -29,13 +29,17 @@ class Base extends Controller
         // 获取管理员账号
         $account = $this->request->session('admin.account');
 
+        // 获取当前控制器
+        $controller = $this->request->controller();
+
         // 获取导航菜单
-//        $nav = $this->getNav();
+        $nav = $this->getNav();
 
         // 注册数据
         $this->assign([
-            'account' => $account,
-//            'nav'     => $nav,
+            'account'    => $account,
+            'controller' => $controller,
+            'nav'        => $nav,
         ]);
     }
 

@@ -31,13 +31,9 @@
     <aside>
       <nav id="asideNav">
         <ul class="layui-nav layui-nav-tree layui-nav-side">
-          <li class="layui-nav-item layui-this"><a href="">首页</a></li>
-          <li class="layui-nav-item"><a href="">菜单管理</a></li>
-          <li class="layui-nav-item"><a href="">文章管理</a></li>
-          <li class="layui-nav-item"><a href="">推荐位管理</a></li>
-          <li class="layui-nav-item"><a href="">推荐位内容管理</a></li>
-          <li class="layui-nav-item"><a href="">管理员管理</a></li>
-          <li class="layui-nav-item"><a href="">系统设置</a></li>
+          {volist name="nav" id="menu"}
+          <li class="layui-nav-item {eq name="controller" value="$menu->controller"}layui-this{/eq}"><a href="{:url($menu->module . '/' . $menu->controller . '/' . $menu->action)}">{$menu->menu_name}</a></li>
+          {/volist}
         </ul>
       </nav>
     </aside>

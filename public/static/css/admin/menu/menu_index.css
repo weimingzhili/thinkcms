@@ -1,0 +1,36 @@
+/* 菜单列表 */
+
+/* 排序按钮*/
+.list-order-input {
+    width: 100px;
+}
+
+/* 分页导航 */
+.pagination {
+    float: right;
+    border-right: 1px solid #e2e2e2;
+    margin-bottom: 80px;
+}
+.pagination li{
+    float: left;
+    width: 40px;
+    height: 30px;
+    border: 1px solid #e2e2e2;
+    border-right: none;
+    line-height: 30px;
+    text-align: center;
+}
+.pagination li a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+.pagination .disabled {
+    color: #C9C9C9;
+    cursor: not-allowed;
+}
+.pagination .active {
+    color: #fff;
+    background-color: #009688;
+    border: 1px solid #009688;
+}

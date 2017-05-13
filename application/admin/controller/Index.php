@@ -28,8 +28,8 @@ class Index extends Base
 /*        $articleModel = Loader::model('Article');
         $articleTotal = $articleModel->getArticleTotal();*/
         // 获取菜单总数
-/*        $menuModel = Loader::model('Menu');
-        $menuTotal = $menuModel->getMenuTotal();*/
+        $menuModel = Loader::model('Menu');
+        $menuTotal = $menuModel->getMenuTotal();
         // 获取管理员总数
         $adminModel      = Loader::model('Admin');
         $adminTotal      = $adminModel->getAdminTotal();
@@ -48,7 +48,7 @@ class Index extends Base
             'last_login_time' => $last_login_time,
             'last_login_ip'   => $last_login_ip,
 //            'articleTotal'    => $articleTotal,
-//            'menuTotal'       => $menuTotal,
+            'menuTotal'       => $menuTotal,
             'adminTotal'      => $adminTotal,
             'domain'          => $domain,
             'OS'              => $os,

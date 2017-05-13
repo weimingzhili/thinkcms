@@ -18,3 +18,6 @@ Route::get(['logout' => 'admin/Login/logout']); // 注销
 
 // 后台首页
 Route::get(['dashboard' => 'admin/Index/index']);
+
+// 菜单管理
+Route::get(['menu' => 'admin/Menu/index']); // 列表

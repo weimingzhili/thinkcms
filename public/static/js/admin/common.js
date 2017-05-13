@@ -7,5 +7,8 @@ var Common = {
     login: '/loginCheck',
 
     // 后台首页
-    dashboard: '/dashboard'
+    dashboard: '/dashboard',
+
+    // 菜单管理
+    menu: '/menu', // 列表
 };
