@@ -1,7 +1,7 @@
 {extend name="base" /}
 
 {block name="css"}
-  <link rel="stylesheet" href="__PUBLIC__/css/admin/menu/menu_index.css" media="all">
+  <link rel="stylesheet" href="__PUBLIC__/css/admin/menu/menu.css" media="all">
 {/block}
 
 {block name="main"}
@@ -50,7 +50,7 @@
       {volist name="pageList" id="menu"}
         <tr>
         <td>
-          <input type="number" class="layui-input list-order-input" name="list_order" value="{$menu->list_order}" title="排序" >
+          <input type="number" class="layui-input list-order-input" name="{$menu->menu_id}" value="{$menu->list_order}" title="排序" >
         </td>
         <td>{$menu->menu_id}</td>
         <td>{$menu->menu_name}</td>
@@ -88,7 +88,7 @@
       <i class="layui-icon">&#xe654;</i> 添加
     </button>
     <!-- 排序 -->
-    <button type="button" class="layui-btn layui-btn-primary">排序</button>
+    <button type="submit" class="layui-btn layui-btn-primary" lay-submit lay-filter="sortBtn">排序</button>
     <!-- 分页导航 -->
     <nav>
       {$pageNav}
@@ -97,5 +97,5 @@
 {/block}
 
 {block name="js"}
-<script src="__PUBLIC__/js/admin/menu/menu_index.js" charset="utf-8"></script>
+<script src="__PUBLIC__/js/admin/menu/menu.js" charset="utf-8"></script>
 {/block}

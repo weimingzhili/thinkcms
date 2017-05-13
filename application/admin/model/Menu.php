@@ -2,6 +2,8 @@
 
 namespace app\admin\model;
 
+use think\Exception;
+
 use think\Model;
 
 /**
@@ -77,5 +79,23 @@ class Menu extends Model
         $pageNav = $pageList->render();
 
         return ['pageList'=> $pageList, 'pageNav' => $pageNav];
+    }
+
+    /**
+     * 菜单排序
+     * @access public
+     * @param array $data 排序数据
+     * @return bool
+     * @throws Exception
+     */
+    public function menuSort($data)
+    {
+        // 批量更新
+        $result = $this->validate('Menu.sort')->saveAll($data);
+        if($result === false) {
+            throw new Exception('排序更新失败');
+        }
+
+        return true;
     }
 }

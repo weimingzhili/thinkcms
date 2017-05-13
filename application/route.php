@@ -21,3 +21,4 @@ Route::get(['dashboard' => 'admin/Index/index']);
 
 // 菜单管理
 Route::get(['menu' => 'admin/Menu/index']); // 列表
+Route::post(['menu/sort' => 'admin/Menu/sort']); // 排序
