@@ -31,8 +31,8 @@
     <aside>
       <nav id="asideNav">
         <ul class="layui-nav layui-nav-tree layui-nav-side">
-          {volist name="nav" id="menu"}
-          <li class="layui-nav-item {eq name="controller" value="$menu->controller"}layui-this{/eq}"><a href="{:url($menu->module . '/' . $menu->controller . '/' . $menu->action)}">{$menu->menu_name}</a></li>
+          {volist name="naves" id="nav"}
+          <li class="layui-nav-item {eq name="controller" value="$nav->controller"}layui-this{/eq}"><a href="{:url($nav->module . '/' . $nav->controller . '/' . $nav->action)}">{$nav->menu_name}</a></li>
           {/volist}
         </ul>
       </nav>

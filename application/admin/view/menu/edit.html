@@ -1,0 +1,68 @@
+{extend name="base" /}
+
+{block name="css"}
+  <link rel="stylesheet" href="__PUBLIC__/css/admin/menu/menu_edit.css" media="all">
+{/block}
+
+{block name="main"}
+  <!-- 面包屑导航 -->
+  <span class="layui-breadcrumb">
+    <a href="{:url('admin/Menu/index')}" title="菜单管理">菜单管理</a>
+    <a><cite>菜单编辑</cite></a>
+  </span>
+  <hr>
+  <!-- 编辑表单 -->
+  <form class="layui-form" role="form">
+    <!-- 菜单名称 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">菜单名称</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input" name="menu_name" value="{$menu->menu_name}" title="菜单名称" placeholder="请填写菜单名称" lay-verify="required|menuName">
+      </div>
+    </div>
+    <!-- 类型 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">类型</label>
+      <div class="layui-input-block">
+        <input type="radio" class="layui-input" name="type" value="1" title="前端导航" {eq name="menu->getData('type')" value="1"}checked{/eq}>
+        <input type="radio" class="layui-input" name="type" value="2" title="后台菜单" {eq name="menu->getData('type')" value="2"}checked{/eq}>
+      </div>
+    </div>
+    <!-- 模块 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">模块</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input" name="module" value="{$menu->module}" title="模块" placeholder="请填写模块" lay-verify="required|module">
+      </div>
+    </div>
+    <!-- 控制器 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">控制器</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input" name="controller" value="{$menu->controller}" title="控制器" placeholder="请填写控制器" lay-verify="required|controller">
+      </div>
+    </div>
+    <!-- 方法 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">方法</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input" name="action" value="{$menu->action}" title="方法" placeholder="请填写方法" lay-verify="required|action">
+      </div>
+    </div>
+    <!-- 状态 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">状态</label>
+      <div class="layui-input-block">
+        <input type="radio" class="layui-input" name="status" value="1" title="启用" {eq name="menu->getData('status')" value="1"}checked{/eq}>
+        <input type="radio" class="layui-input" name="status" value="2" title="禁用" {eq name="menu->getData('status')" value="2"}checked{/eq}>
+      </div>
+    </div>
+    <input type="hidden" name="menu_id" value="{$menu_id}">
+    <!-- 保存按钮 -->
+    <button type="submit" class="layui-btn layui-btn-big layui-btn-normal" id="saveBtn" lay-submit lay-filter="saveBtn">保 存</button>
+  </form>
+{/block}
+
+{block name="js"}
+  <script src="__PUBLIC__/js/admin/menu/menu_edit.js" charset="UTF-8"></script>
+{/block}

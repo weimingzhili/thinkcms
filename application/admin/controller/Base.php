@@ -33,13 +33,13 @@ class Base extends Controller
         $controller = $this->request->controller();
 
         // 获取导航菜单
-        $nav = $this->getNav();
+        $naves = $this->getNav();
 
         // 注册数据
         $this->assign([
             'account'    => $account,
             'controller' => $controller,
-            'nav'        => $nav,
+            'naves'        => $naves,
         ]);
     }
 
@@ -65,8 +65,8 @@ class Base extends Controller
     {
         // 获取菜单
         $menuModel = Loader::model('Menu');
-        $nav = $menuModel->getAdminMenuAll();
+        $naves = $menuModel->getAdminMenuAll();
 
-        return $nav;
+        return $naves;
     }
 }

@@ -21,6 +21,7 @@ Route::get(['dashboard' => 'admin/Index/index']);
 
 // 菜单管理
 Route::get(['menu' => 'admin/Menu/index']); // 列表
-Route::post(['menu/sort' => 'admin/Menu/sort']); // 排序
 Route::rule('menu/add', 'admin/Menu/add', 'GET|POST'); // 添加
+Route::rule('menu/edit', 'admin/Menu/edit', 'GET|POST'); // 编辑
+Route::post(['menu/sort' => 'admin/Menu/sort']); // 排序
 Route::post(['menu/setStatus' => 'admin/Menu/setStatus']); // 设置状态

@@ -1,4 +1,7 @@
-/* 菜单添加 */
+/**
+ * 菜单编辑
+ * @author WeiZeng
+ */
 
 // 表单验证
 layui.form().verify({
@@ -37,22 +40,19 @@ layui.form().verify({
     }
 });
 
-// 添加
-layui.form().on('submit(addBtn)', function(data) {
+// 编辑
+layui.form().on('submit(saveBtn)', function(data) {
     // 发送请求
     $.ajax({
-        url: Common.menuAdd,
+        url: Common.menuEdit,
         type: 'POST',
         dataType: 'JSON',
         data: data.field,
         success: function(result) {
             if(result['status'] === 1) {
-                layer.confirm('添加成功', {
-                    title: '成功提示',
+                layer.msg(result['message'], {
                     icon: 1,
-                    btn: ['继续添加', '转到列表']
-                }, function() {
-                    window.location.reload();
+                    time: 1000
                 }, function() {
                     window.location.href = Common.menu;
                 });
@@ -68,4 +68,4 @@ layui.form().on('submit(addBtn)', function(data) {
 
     // 禁止表单提交
     return false;
-})
+});

@@ -35,6 +35,20 @@ class Menu extends Model
     }
 
     /**
+     * 获取菜单
+     * @access public
+     * @param int $menu_id 菜单主键
+     * @return object
+     */
+    public function getMenu($menu_id)
+    {
+        // 查询记录
+        $menu = self::get($menu_id);
+
+        return $menu;
+    }
+
+    /**
      * 获取所有后台菜单
      * @access public
      * @return object
@@ -133,6 +147,26 @@ class Menu extends Model
                   ->save($data, ['menu_id' => $data['menu_id']]);
         if($result === false) {
             throw new Exception('更新状态失败');
+        }
+
+        return true;
+    }
+
+    /**
+     * 菜单更新
+     * @access public
+     * @param array $data 更新数据
+     * @return bool
+     * @throws Exception
+     */
+    public function menuUpdate($data)
+    {
+        // 更新记录
+        $result = $this->validate('Menu.edit')
+                  ->allowField(['menu_name', 'type', 'module', 'controller', 'action', 'status'])
+                  ->save($data, ['menu_id' => $data['menu_id']]);
+        if($result === false) {
+            throw new Exception('更新出错');
         }
 
         return true;

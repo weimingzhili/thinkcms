@@ -97,6 +97,61 @@ class Menu extends Base
     }
 
     /**
+     * 编辑
+     * @access public
+     * @param Request $request 请求对象
+     * @return array|\think\Response
+     */
+    public function edit(Request $request)
+    {
+        // 输出编辑页
+        if($request->isGet()) {
+            // 获取主键
+            $menu_id  = $request->param('menu_id', 0, 'intval');
+            // 获取菜单
+            $menuModel = Loader::model('Menu');
+            $menu      = $menuModel->getMenu($menu_id);
+
+            // 注册数据
+            $this->assign([
+                'menu_id' => $menu_id,
+                'menu'    => $menu,
+            ]);
+
+            return $this->fetch();
+        }
+
+        // 请求参数
+        $param               = [];
+        $param['menu_id']    = $request->param('menu_id', 0, 'intval');                    // 主键
+        $param['menu_name']  = $request->param('menu_name', '', 'trim,htmlspecialchars');  // 菜单名称
+        $param['module']     = $request->param('module', '', 'trim,htmlspecialchars');     // 模块
+        $param['type']       = $request->param('type', 0, 'trim,htmlspecialchars');        // 类型
+        $param['controller'] = $request->param('controller', '', 'trim,htmlspecialchars'); // 控制器
+        $param['action']     = $request->param('action', '', 'trim,htmlspecialchars');     // 方法
+        $param['status']     = $request->param('status', 0, 'trim,htmlspecialchars');      // 状态
+        // 验证参数
+        $checkRes = $this->validate($param, 'Menu.edit');
+        if($checkRes !== true) {
+            return ['status' => 0, 'message' => $checkRes];
+        }
+
+        // 保存
+        try {
+            $menuModel = Loader::model('Menu');
+            $result    = $menuModel->menuUpdate($param);
+            if($result === true) {
+                return ['status' => 1, 'message' => '保存成功'];
+            }
+
+            return ['status' => 0, 'message' => '保存失败'];
+        } catch (Exception $e) {
+            // 处理异常
+            return ['status' => 0, 'message' => $e->getMessage()];
+        }
+    }
+
+    /**
      * 排序
      * @access public
      * @param Request $request 请求对象
