@@ -84,9 +84,7 @@
       </tbody>
     </table>
     <!-- 添加 -->
-    <button type="button" class="layui-btn layui-btn-normal">
-      <i class="layui-icon">&#xe654;</i> 添加
-    </button>
+    <a href="{:url('admin/Menu/add')}" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe654;</i> 添加</a>
     <!-- 排序 -->
     <button type="submit" class="layui-btn layui-btn-primary" lay-submit lay-filter="sortBtn">排序</button>
     <!-- 分页导航 -->
@@ -97,5 +95,5 @@
 {/block}
 
 {block name="js"}
-<script src="__PUBLIC__/js/admin/menu/menu.js" charset="utf-8"></script>
+<script src="__PUBLIC__/js/admin/menu/menu.js" charset="UTF-8"></script>
 {/block}

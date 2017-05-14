@@ -55,6 +55,48 @@ class Menu extends Base
     }
 
     /**
+     * 添加，GET请求输出添加页，POST请求执行添加操作
+     * @access public
+     * @param Request $request 请求对象
+     * @return array|\think\Response
+     */
+    public function add(Request $request)
+    {
+        // 输出添加页
+        if($request->isGet()) {
+            return $this->fetch();
+        }
+
+        // 请求参数
+        $param               = [];
+        $param['menu_name']  = $request->param('menu_name', '', 'trim,htmlspecialchars');  // 菜单名称
+        $param['type']       = $request->param('type', 1, 'intval');                       // 类型
+        $param['module']     = $request->param('module', '', 'trim,htmlspecialchars');     // 模块
+        $param['controller'] = $request->param('controller', '', 'trim,htmlspecialchars'); // 控制器
+        $param['action']     = $request->param('action', '', 'trim,htmlspecialchars');     // 方法
+        $param['status']     = $request->param('status', 1, 'intval');                     // 状态
+        // 验证参数
+        $checkRes = $this->validate($param, 'Menu.add');
+        if($checkRes !== true) {
+            return ['status' => 0, 'message' => $checkRes];
+        }
+
+        // 添加
+        try {
+            $menuModel = Loader::model('Menu');
+            $result    = $menuModel->menuAdd($param);
+            if($result === true) {
+                return ['status' => 1, 'message' => '添加成功'];
+            }
+
+            return ['status' => 0, 'message' => '添加失败'];
+        } catch (Exception $e) {
+            // 处理异常
+            return ['status' => 0, 'message' => $e->getMessage()];
+        }
+    }
+
+    /**
      * 排序
      * @access public
      * @param Request $request 请求对象

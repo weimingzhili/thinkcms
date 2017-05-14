@@ -1,0 +1,11 @@
+/* 菜单添加 */
+
+/* 添加表单 */
+form {
+    width: 50%;
+    padding-top: 30px;
+}
+/* 添加按钮 */
+#addBtn {
+    margin-left: 45%;
+}

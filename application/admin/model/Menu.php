@@ -82,6 +82,26 @@ class Menu extends Model
     }
 
     /**
+     * 菜单添加
+     * @access public
+     * @param array $data 添加数据
+     * @return bool
+     * @throws Exception
+     */
+    public function menuAdd($data)
+    {
+        // 插入记录
+        $result = $this->validate('Menu.add')
+                  ->allowField(['menu_name', 'type', 'module', 'controller', 'action', 'status'])
+                  ->save($data);
+        if($result === false) {
+            throw new Exception('添加出错');
+        }
+
+        return true;
+    }
+
+    /**
      * 菜单排序
      * @access public
      * @param array $data 排序数据
