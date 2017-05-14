@@ -1,6 +1,5 @@
-
 ThinkCMS遵循Apache2开源协议发布，并提供免费使用。
-版权所有 by WeiZeng <weimingzhili@gmail.com>
+版权所有 by WeiZeng <weimingzhili@foxmail.com>
 
 Apache Licence是著名的非盈利开源组织Apache采用的协议。
 该协议和BSD类似，鼓励代码共享和尊重原作者的著作权，
