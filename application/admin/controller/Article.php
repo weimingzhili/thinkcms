@@ -23,7 +23,7 @@ class Article extends Base
         // 初始数据
         $param = [];                         // 请求参数
         $where = ['status' => ['<>', '-1']]; // 分页查询条件
-        $query = [];                         // 分页查询参数
+        $query = ['query' => []];            // 分页查询参数
 
         // 获取请求参数
         $param['column_id'] = $request->param('column_id', '', 'intval'); // 栏目
@@ -33,11 +33,11 @@ class Article extends Base
             // 将请求参数转换成分页查询条件和分页查询参数
             if(!empty($param['column_id'])) {
                 $where['column_id'] = $param['column_id'];
-                $query['column_id'] = $param['column_id'];
+                $query['query']['column_id'] = $param['column_id'];
             }
             if(!empty($param['title'])) {
                 $where['title'] = ['like', '%' . $param['title'] . '%'];
-                $query['title'] = $param['title'];
+                $query['query']['title'] = $param['title'];
             }
         }
 

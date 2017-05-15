@@ -25,7 +25,7 @@ class Menu extends Base
         // 初始数据
         $param = [];                         // 请求参数
         $where = ['status' => ['<>', '-1']]; // 分页查询条件
-        $query = [];                         // 分页查询参数
+        $query = ['query' => []];            // 分页查询参数
 
         // 获取请求参数
         $param['type'] = $request->param('type', '', 'intval');
@@ -34,7 +34,7 @@ class Menu extends Base
             // 将请求参数转换成分页查询条件和分页查询参数
             if(!empty($param['type'])) {
                 $where['type'] = $param['type'];
-                $query['type'] = $param['type'];
+                $query['query']['type'] = $param['type'];
             }
         }
 

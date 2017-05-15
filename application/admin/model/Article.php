@@ -93,7 +93,7 @@ class Article extends Model
         // 获取分页记录
         $pageList = self::where($where)
                     ->order(['list_order' => 'desc', 'article_id' => 'desc'])
-                    ->paginate(5, false, ['query' => $query]);
+                    ->paginate(5, false, $query);
         // 获取分页导航
         $pageNav = $pageList->render();
 
