@@ -2,6 +2,8 @@
 
 namespace app\admin\model;
 
+use think\Exception;
+
 use think\Loader;
 
 use think\Model;
@@ -82,6 +84,19 @@ class Article extends Model
     }
 
     /**
+     * 获取文章总数
+     * @access public
+     * @return int
+     */
+    public function getArticleTotal()
+    {
+        // 统计记录
+        $total = self::where(['status' => ['<>', '-1']])->count();
+
+        return $total;
+    }
+
+    /**
      * 分页
      * @access public
      * @param array $where 查询条件
@@ -98,5 +113,42 @@ class Article extends Model
         $pageNav = $pageList->render();
 
         return ['pageList' => $pageList, 'pageNav' => $pageNav];
+    }
+
+    /**
+     * 文章排序
+     * @access public
+     * @param array $data 排序数据
+     * @return bool
+     * @throws Exception
+     */
+    public function articleSort($data)
+    {
+        // 批量更新
+        $result = $this->validate('article.sort')->saveAll($data);
+        if($result === false) {
+            throw new Exception('排序更新出错');
+        }
+
+        return true;
+    }
+
+    /**
+     * 更新状态
+     * @access public
+     * @param array $data 更新数据
+     * @return bool
+     * @throws Exception
+     */
+    public function updateStatus($data)
+    {
+        // 更新记录
+        $result = $this->validate('Article.setStatus')
+                  ->save($data, ['article_id' => $data['article_id']]);
+        if($result === false) {
+            throw new Exception('更新状态出错');
+        }
+
+        return true;
     }
 }

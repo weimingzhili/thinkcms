@@ -85,7 +85,7 @@ class Menu extends Model
     public function getMenuTotal()
     {
         // 统计记录
-        $total = self::where(['status' => 1])->count();
+        $total = self::where(['status' => ['<>', '-1']])->count();
 
         return $total;
     }
@@ -140,7 +140,7 @@ class Menu extends Model
         // 批量更新
         $result = $this->validate('Menu.sort')->saveAll($data);
         if($result === false) {
-            throw new Exception('排序更新失败');
+            throw new Exception('排序更新出错');
         }
 
         return true;
@@ -159,7 +159,7 @@ class Menu extends Model
         $result = $this->validate('Menu.setStatus')
                   ->save($data, ['menu_id' => $data['menu_id']]);
         if($result === false) {
-            throw new Exception('更新状态失败');
+            throw new Exception('更新状态出错');
         }
 
         return true;

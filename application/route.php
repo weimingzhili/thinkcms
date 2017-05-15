@@ -28,3 +28,5 @@ Route::post(['menu/setStatus' => 'admin/Menu/setStatus']); // 设置状态
 
 // 文章管理
 Route::get(['article' => 'admin/Article/index']); //列表
+Route::post(['article/sort' => 'admin/Article/sort']); // 排序
+Route::post(['article/setStatus' => 'admin/Article/setStatus']); // 设置状态

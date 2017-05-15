@@ -8,7 +8,7 @@
   <h1>欢迎使用ThinkCMS内容管理系统！</h1>
   <hr>
   <p>
-    您上次登录的时间{$last_login_time}，IP{$last_login_ip}，如有出入请向管理员反馈，谢谢！
+    您上次登录的时间{$last_login_time}，IP{$last_login_ip}，如有出入请向作者反馈，谢谢！
   </p>
   <!-- 展示表格 -->
   <table class="layui-table">
@@ -20,7 +20,7 @@
     <tbody>
     <tr>
       <td>文章数量</td>
-      <td>27</td>
+      <td>{$articleTotal}</td>
     </tr>
     <tr>
       <td>菜单数量</td>
@@ -39,12 +39,12 @@
       <td>{$serverSoftware}</td>
     </tr>
     <tr>
-      <td>服务器端口</td>
-      <td>{$port}</td>
-    </tr>
-    <tr>
       <td>服务器系统</td>
       <td>{$OS}</td>
+    </tr>
+    <tr>
+      <td>作者</td>
+      <td>WeiZeng: weimingzhili@foxmail.com</td>
     </tr>
     </tbody>
   </table>

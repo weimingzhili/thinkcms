@@ -25,8 +25,8 @@ class Index extends Base
         $last_login_ip   = $request->session('admin.last_login_ip');
 
         // 获取文章总数
-/*        $articleModel = Loader::model('Article');
-        $articleTotal = $articleModel->getArticleTotal();*/
+        $articleModel = Loader::model('Article');
+        $articleTotal = $articleModel->getArticleTotal();
         // 获取菜单总数
         $menuModel = Loader::model('Menu');
         $menuTotal = $menuModel->getMenuTotal();
@@ -40,20 +40,17 @@ class Index extends Base
         $os              = php_uname();
         // 获取服务器软件
         $serverSoftware  = $request->server('SERVER_SOFTWARE', '未知');
-        // 获取服务器端口
-        $port            = $request->server('SERVER_PORT');
 
         // 注册数据
         $this->assign([
             'last_login_time' => $last_login_time,
             'last_login_ip'   => $last_login_ip,
-//            'articleTotal'    => $articleTotal,
+            'articleTotal'    => $articleTotal,
             'menuTotal'       => $menuTotal,
             'adminTotal'      => $adminTotal,
             'domain'          => $domain,
             'OS'              => $os,
             'serverSoftware'  => $serverSoftware,
-            'port'            => $port
         ]);
 
         // 输出页面

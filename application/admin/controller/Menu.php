@@ -174,7 +174,7 @@ class Menu extends Base
             $menuModel = Loader::model('Menu');
             $result    = $menuModel->menuSort($sortData);
             if($result === true) {
-                return ['status' => 1, 'message' => '操作成功'];
+                return ['status' => 1, 'message' => '排序成功'];
             }
 
             return ['status' => 0, 'message' => '操作失败'];
@@ -193,7 +193,7 @@ class Menu extends Base
     public function setStatus(Request $request)
     {
         // 请求参数
-        $param['menu_id'] = $request->param('menu_id', 0, 'intval'); // 菜单主键
+        $param['menu_id'] = $request->param('menu_id', 0, 'intval'); // 主键
         $param['status']  = $request->param('status', 0, 'intval');  // 状态
         // 验证参数
         $checkRes = $this->validate($param, 'Menu.setStatus');

@@ -68,7 +68,7 @@
               <input type="checkbox" class="checkbox-input" name="article_id" value="{$article->article_id}" title="勾选">
             </td>
             <td>
-              <input type="number" class="layui-input list-order-input" name="{$article->list_order}" value="0" title="排序">
+              <input type="number" class="layui-input list-order-input" name="{$article->article_id}" value="{$article->list_order}" title="排序">
             </td>
             <td>{$article->article_id}</td>
             <td>{$article->title}</td>
@@ -101,7 +101,7 @@
         {/volist}
       </tbody>
     </table>
-    <div class="layui-form-item">
+    <div class="layui-form-item" id="actionBox">
       <div class="layui-inline">
         <div class="layui-input-inline">
           <!-- 添加按钮 -->
@@ -110,6 +110,11 @@
           <button type="submit" class="layui-btn layui-btn-primary" lay-submit lay-filter="sortBtn">排 序</button>
         </div>
       </div>
+    </div>
+  </form>
+  <!-- 推送表单 -->
+  <form class="layui-form" id="pushForm" role="form">
+    <div class="layui-form-item">
       <!-- 推荐位 -->
       <div class="layui-inline">
         <label class="layui-form-label">推荐位</label>
@@ -122,15 +127,15 @@
       <!-- 推送按钮 -->
       <div class="layui-inline">
         <div class="layui-input-inline">
-          <button type="button" class="layui-btn">推 送</button>
+          <button type="submit" class="layui-btn">推 送</button>
         </div>
       </div>
     </div>
-    <!-- 分页导航 -->
-    <nav>
-      {$pageNav}
-    </nav>
   </form>
+  <!-- 分页导航 -->
+  <nav>
+    {$pageNav}
+  </nav>
 {/block}
 
 {block name="js"}

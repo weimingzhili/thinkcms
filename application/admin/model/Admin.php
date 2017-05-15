@@ -49,6 +49,19 @@ class Admin extends Model
     }
 
     /**
+     * 获取管理员总数
+     * @access public
+     * @return int
+     */
+    public function getAdminTotal()
+    {
+        // 统计记录
+        $total = self::where(['status' => ['<>', -1]])->count();
+
+        return $total;
+    }
+
+    /**
      * 登录验证
      * @access public
      * @param string $account 账号
@@ -89,18 +102,5 @@ class Admin extends Model
         }
 
         return true;
-    }
-
-    /**
-     * 获取管理员总数
-     * @access public
-     * @return int
-     */
-    public function getAdminTotal()
-    {
-        // 统计记录
-        $total = self::where(['status' => 1])->count();
-
-        return $total;
     }
 }

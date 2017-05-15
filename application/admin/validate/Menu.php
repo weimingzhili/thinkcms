@@ -12,7 +12,7 @@ class Menu extends Validate
 {
     // 验证规则
     protected $rule = [
-        'menu_id'            => 'require|number|gt:0',
+        'menu_id|序号'        => 'require|number|gt:0',
         'menu_name|菜单名称'  => 'require|max:60',
         'module|模块'         => 'require|alpha|max:50',
         'controller|控制器'   => 'require|alpha|max:50',

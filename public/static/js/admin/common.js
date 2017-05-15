@@ -18,6 +18,8 @@ var Common = {
 
     // 文章管理
     article: '/article', // 列表
+    articleSort: '/article/sort', // 排序
+    articleSetStatus: 'article/setStatus', // 设置状态
 
     // 排序，需传入排序按钮的事件过滤器、主键和请求方法的url
     sort: function(filter, pk, url) {
