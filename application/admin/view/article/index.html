@@ -1,0 +1,138 @@
+{extend name="base" /}
+
+{block name="css"}
+  <link rel="stylesheet" href="__PUBLIC__/css/admin/article/article.css" media="all">
+{/block}
+
+{block name="main"}
+  <!-- 面包屑导航 -->
+  <span class="layui-breadcrumb">
+    <a href="{:url('admin/Article/index')}" type="文章管理">文章管理</a>
+    <a><cite>文章列表</cite></a>
+  </span>
+  <hr>
+  <!-- 筛选表单 -->
+  <form action="" class="layui-form" role="form">
+    <div class="layui-form-item">
+      <!-- 栏目 -->
+      <div class="layui-inline">
+        <label class="layui-form-label">栏目</label>
+        <div class="layui-input-inline">
+          <select name="column_id" title="栏目下拉选择框">
+            <option value="">请选择所属栏目</option>
+            {volist name="columns" id="column"}
+              <option value="{$column->menu_id}" {eq name="column_id" value="$column->menu_id"}selected{/eq}>{$column->menu_name}</option>
+            {/volist}
+          </select>
+        </div>
+      </div>
+      <!-- 文章标题 -->
+      <div class="layui-inline">
+        <label class="layui-form-label">文章标题</label>
+        <div class="layui-input-inline">
+          <input type="text" class="layui-input" name="title" value="{$title}" title="文章标题" placeholder="请输入文章标题" >
+        </div>
+      </div>
+      <!-- 筛选按钮 -->
+      <div class="layui-inline">
+        <div class="layui-input-inline">
+          <button type="submit" class="layui-btn"><i class="layui-icon">&#xe615;</i> 筛 选</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- 展示表单 -->
+  <form class="layui-form" role="form">
+    <!-- 展示表格 -->
+    <table class="layui-table">
+      <thead>
+        <tr>
+          <th>
+            <input type="checkbox" class="checkbox-input" name="article_id" value="" title="全选">
+          </th>
+          <th>排序</th>
+          <th>序号</th>
+          <th>标题</th>
+          <th>栏目</th>
+          <th>来源</th>
+          <th>封面图</th>
+          <th>创建时间</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        {volist name="pageList" id="article"}
+          <tr>
+            <td>
+              <input type="checkbox" class="checkbox-input" name="article_id" value="{$article->article_id}" title="勾选">
+            </td>
+            <td>
+              <input type="number" class="layui-input list-order-input" name="{$article->list_order}" value="0" title="排序">
+            </td>
+            <td>{$article->article_id}</td>
+            <td>{$article->title}</td>
+            <td>{$article->column_id}</td>
+            <td>{$article->source}</td>
+            <td>{$article->thumb}</td>
+            <td>{$article->create_time}</td>
+            <td>{$article->status}</td>
+            <td>
+              <div class="layui-btn-group">
+                <!-- 编辑 -->
+                <button type="button" class="layui-btn layui-btn-small layui-btn-primary editBtn" data-article_id="{$article->article_id}">
+                  <i class="layui-icon">&#xe642;</i> 编辑
+                </button>
+                <!-- 启用 -->
+                <button type="button" class="layui-btn layui-btn-small layui-btn-primary enableBtn" data-article_id="{$article->article_id}">
+                  <i class="layui-icon">&#xe616;</i> 启用
+                </button>
+                <!-- 禁用 -->
+                <button type="button" class="layui-btn layui-btn-small layui-btn-primary disableBtn" data-article_id="{$article->article_id}">
+                  <i class="layui-icon">&#x1007;</i> 禁用
+                </button>
+                <!-- 删除 -->
+                <button type="button" class="layui-btn layui-btn-small layui-btn-primary deleteBtn" data-article_id="{$article->article_id}">
+                  <i class="layui-icon">&#xe640;</i> 删除
+                </button>
+              </div>
+            </td>
+          </tr>
+        {/volist}
+      </tbody>
+    </table>
+    <div class="layui-form-item">
+      <div class="layui-inline">
+        <div class="layui-input-inline">
+          <!-- 添加按钮 -->
+          <a href="{:url('admin/Article/add')}" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe654;</i> 添 加</a>
+          <!-- 排序按钮 -->
+          <button type="submit" class="layui-btn layui-btn-primary" lay-submit lay-filter="sortBtn">排 序</button>
+        </div>
+      </div>
+      <!-- 推荐位 -->
+      <div class="layui-inline">
+        <label class="layui-form-label">推荐位</label>
+        <div class="layui-input-inline">
+          <select name="position" title="推荐位下拉选择框">
+            <option value="">请选择推荐位</option>
+          </select>
+        </div>
+      </div>
+      <!-- 推送按钮 -->
+      <div class="layui-inline">
+        <div class="layui-input-inline">
+          <button type="button" class="layui-btn">推 送</button>
+        </div>
+      </div>
+    </div>
+    <!-- 分页导航 -->
+    <nav>
+      {$pageNav}
+    </nav>
+  </form>
+{/block}
+
+{block name="js"}
+  <script src="__PUBLIC__/js/admin/article/article.js" charset="UTF-8"></script>
+{/block}

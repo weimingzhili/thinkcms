@@ -27,13 +27,12 @@ class Menu extends Base
         $where = ['status' => ['<>', '-1']]; // 分页查询条件
         $query = [];                         // 分页查询参数
 
-        // 获取菜单类型
+        // 获取请求参数
         $param['type'] = $request->param('type', '', 'intval');
-        // 若菜单类型有值
-        if(!empty($param['type'])) {
-            // 验证菜单类型
-            $checkRes = $this->validate($param, 'Menu.filter');
-            if($checkRes === true) {
+        $checkRes = $this->validate($param, 'Menu.filter');
+        if($checkRes === true) {
+            // 将请求参数转换成分页查询条件和分页查询参数
+            if(!empty($param['type'])) {
                 $where['type'] = $param['type'];
                 $query['type'] = $param['type'];
             }

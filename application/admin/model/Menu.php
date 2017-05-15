@@ -49,6 +49,19 @@ class Menu extends Model
     }
 
     /**
+     * 获取所有栏目
+     * @access public
+     * @return array
+     */
+    public function getColumnAll()
+    {
+        // 查询记录
+        $columns = self::all(['type' => 1, 'status' => 1]);
+
+        return $columns;
+    }
+
+    /**
      * 获取所有后台菜单
      * @access public
      * @return object

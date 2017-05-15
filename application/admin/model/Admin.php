@@ -20,7 +20,7 @@ class Admin extends Model
      */
     public function getLastLoginTimeAttr($last_login_time)
     {
-        return !empty($last_login_time) ? date('Y年n月j日G时i分', $last_login_time) : '未知';
+        return !empty($last_login_time) ? date('Y年n月j日G时i分s秒', $last_login_time) : '未知';
     }
 
     /**

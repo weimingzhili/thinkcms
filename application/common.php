@@ -21,3 +21,21 @@ function encryptPassword($password)
     // 返回拼接了加密前缀并用md5加密后的密码
     return md5(config('ENC_PRE') . $password);
 }
+
+/**
+ * 高亮
+ * @param string $controller 控制器
+ * @return string
+ */
+function highLight($controller)
+{
+    // 当前控制器
+    $currentController = request()->controller();
+
+    // 判断
+    if($currentController == $controller) {
+        return 'layui-this';
+    }
+
+    return '';
+}

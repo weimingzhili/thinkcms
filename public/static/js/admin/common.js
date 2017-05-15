@@ -16,6 +16,9 @@ var Common = {
     menuEdit: '/menu/edit', // 编辑
     menuSetStatus: '/menu/setStatus', // 设置状态
 
+    // 文章管理
+    article: '/article', // 列表
+
     // 排序，需传入排序按钮的事件过滤器、主键和请求方法的url
     sort: function(filter, pk, url) {
         layui.form().on('submit(' + filter + ')', function(data) {
