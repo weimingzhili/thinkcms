@@ -1,0 +1,41 @@
+/* 文章添加 */
+
+/* 添加表单 */
+form {
+    width: 50%;
+    padding-top: 30px;
+}
+/* 栏目下拉选项 */
+.layui-anim {
+    z-index: 999999;
+}
+/* 预览 */
+.upload-box img {
+    display: none;
+    width: 75%;
+}
+/* 上传表单盒子 */
+.upload-form-box {
+    position: absolute;
+    top: 50%;
+    left: 100px;
+    margin: -18px 0 0 -56px;
+}
+/* 上传显示按钮 */
+.uploaded-button {
+    background-color: rgba(0,0,0,.2);
+    color: rgba(255,255,255,1);
+}
+/* 上传按钮图标与文字 */
+.layui-upload-icon {
+    position: relative;
+    top: -30px;
+}
+/* 文章内容 */
+#addForm .layui-layedit {
+    width: 180%;
+}
+/* 添加按钮 */
+#addBtn {
+    margin-left: 45%;
+}

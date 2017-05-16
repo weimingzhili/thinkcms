@@ -96,7 +96,7 @@ class Menu extends Base
     }
 
     /**
-     * 编辑
+     * 编辑，GET请求输出编辑页，POST请求执行保存操作
      * @access public
      * @param Request $request 请求对象
      * @return array|\think\Response

@@ -14,6 +14,9 @@ use think\Request;
  */
 class Article extends Base
 {
+    // 上传目录
+    const UPLOAD_DIR = 'uploads';
+
     /**
      * 列表页
      * @access public
@@ -49,7 +52,7 @@ class Article extends Base
 
         // 获取栏目数据
         $menuModel = Loader::model('Menu');
-        $columns = $menuModel->getColumnAll();
+        $columnData = $menuModel->getColumnAll();
 
         // 注册数据
         $this->assign([
@@ -57,11 +60,63 @@ class Article extends Base
             'title'     => $param['title'],
             'pageList'  => $pageData['pageList'],
             'pageNav'   => $pageData['pageNav'],
-            'columns'   => $columns,
+            'columnData'   => $columnData,
         ]);
 
         // 输出页面
         return $this->fetch();
+    }
+
+    /**
+     * 添加，GET请求输出添加页，POST请求执行添加操作
+     * @access public
+     * @param Request $request 请求对象
+     * @return array|\think\Response
+     */
+    public function add(Request $request)
+    {
+        // 输出添加页
+        if($request->isGet()) {
+            // 获取栏目数据
+            $menuModel  = Loader::model('Menu');
+            $columnData = $menuModel->getColumnAll();
+
+            // 注册数据
+            $this->assign(['columnData' => $columnData]);
+
+            return $this->fetch();
+        }
+
+        // 请求参数
+        $param                = [];
+        $param['title']       = $request->param('title', '', 'trim,htmlspecialchars');         // 标题
+        $param['subtitle']    = $request->param('subtitle', '', 'trim,htmlspecialchars');      // 子标题
+        $param['thumb']       = $request->param('thumb', '', 'trim,htmlspecialchars');         // 缩略图
+        $param['column_id']   = $request->param('column_id', '', 'intval');                    // 栏目
+        $param['source']      = $request->param('source', '', 'trim,htmlspecialchars');        // 来源
+        $param['description'] = $request->param('description', '', 'trim,htmlspecialchars');   // 描述
+        $param['keywords']    = $request->param('keywords', '', 'trim,htmlspecialchars');      // 关键词
+        $param['content']     = $content = $request->param('content', '', 'htmlspecialchars'); // 文章内容
+        $param['admin']       = $request->session('admin.account', '');                        // 管理员账号
+        // 验证参数
+        $checkRes = $this->validate($param, 'Article.add');
+        if($checkRes !== true) {
+            return ['status' => 0, 'message' => $checkRes];
+        }
+
+        // 新增
+        try {
+            $articleModel = Loader::model('Article');
+            $result       = $articleModel->articleAdd($param, $content);
+            if($result === true) {
+                return ['status' => 1, 'message' => '添加成功'];
+            }
+
+            return ['status' => 0, 'message' => '添加失败'];
+        } catch (Exception $e) {
+            // 处理异常
+            return ['status' => 0, 'message' => $e->getMessage()];
+        }
     }
 
     /**
@@ -128,5 +183,30 @@ class Article extends Base
             // 处理异常
             return ['status' => 0, 'message' => $e->getMessage()];
         }
+    }
+
+    /**
+     * 上传
+     * @access public
+     * @param Request $request 请求对象
+     * @return string
+     */
+    public function upload(Request $request)
+    {
+        // 获取上传文件
+        $file = $request->file('file');
+
+        // 验证并移动到上传目录下
+        $fileInfo = $file->validate(['ext' => 'jpg,png,gif', 'size' => 1048576])
+                    ->move(ROOT_PATH . 'public' . DS . self::UPLOAD_DIR);
+        if($fileInfo) {
+            // 若移动成功，返回上传路径
+            $uploadPath = DS . self::UPLOAD_DIR . DS . $fileInfo->getSaveName();
+
+            return json(['code' => 0, 'data' => ['src' => $uploadPath]]);
+        }
+
+        // 若移动失败，返回错误信息
+        return json(['code' => -1, 'msg' => $file->getError()]);
     }
 }

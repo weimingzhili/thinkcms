@@ -20,7 +20,7 @@
         <div class="layui-input-inline">
           <select name="column_id" title="栏目下拉选择框">
             <option value="">请选择所属栏目</option>
-            {volist name="columns" id="column"}
+            {volist name="columnData" id="column"}
               <option value="{$column->menu_id}" {eq name="column_id" value="$column->menu_id"}selected{/eq}>{$column->menu_name}</option>
             {/volist}
           </select>

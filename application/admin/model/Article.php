@@ -14,6 +14,19 @@ use think\Model;
  */
 class Article extends Model
 {
+    // 数据加成：新增
+    protected $insert = ['create_time'];
+
+    /**
+     * 与文章内容模型一对一关联
+     * @access public
+     * @return \think\model\relation\HasOne
+     */
+    public function articleContent()
+    {
+        return $this->hasOne('ArticleContent');
+    }
+
     /**
      * 栏目获取器
      * @access public
@@ -27,10 +40,10 @@ class Article extends Model
 
         // 获取栏目
         $menuModel = Loader::model('Menu');
-        $columns = $menuModel->getColumnAll();
+        $columnData = $menuModel->getColumnAll();
 
         // 获取栏目名
-        foreach ($columns as $value) {
+        foreach ($columnData as $value) {
             if($value->menu_id == $column_id) {
                 $column_name = $value->menu_name;
             }
@@ -81,6 +94,16 @@ class Article extends Model
     public function getStatusAttr($status)
     {
         return $status == 1 ? '启用' : '禁用';
+    }
+
+    /**
+     * 创建时间修改器
+     * @access public
+     * @return int
+     */
+    public function setCreateTimeAttr()
+    {
+        return time();
     }
 
     /**
@@ -147,6 +170,39 @@ class Article extends Model
                   ->save($data, ['article_id' => $data['article_id']]);
         if($result === false) {
             throw new Exception('更新状态出错');
+        }
+
+        return true;
+    }
+
+    /**
+     * 文章添加
+     * @access public
+     * @param array $articleData 文章添加数据
+     * @param string $content 文章内容
+     * @return bool
+     * @throws Exception
+     */
+    public function articleAdd($articleData, $content)
+    {
+        // 往article表插入记录
+        $result = $this->validate('Article.addArticle')
+                  ->allowField(['title', 'subtitle', 'thumb', 'column_id', 'source', 'description', 'keywords', 'admin'])
+                  ->save($articleData);
+        if($result === false) {
+            throw new Exception('文章添加出错');
+        }
+
+        // 获取article表自增id
+        $article_id = $this->getAttr('article_id');
+
+        // 往article_content表插入记录
+        $addRes = $this->validate('Article.addContent')
+                  ->allowField(['article_id,content'])
+                  ->articleContent()
+                  ->save(['article_id' => $article_id, 'content' => $content]);
+        if($addRes === false) {
+            throw new Exception('文章内容添加出错');
         }
 
         return true;

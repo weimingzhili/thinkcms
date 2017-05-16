@@ -13,7 +13,7 @@ body {
     top: 0;
     width: 100%;
     box-shadow: 0 1px 1px #1aa094;
-    z-index: 999;
+    z-index: 9999999;
 }
 #topNav ul {
     border-radius: 0;

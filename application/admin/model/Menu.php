@@ -56,9 +56,9 @@ class Menu extends Model
     public function getColumnAll()
     {
         // 查询记录
-        $columns = self::all(['type' => 1, 'status' => 1]);
+        $columnData = self::all(['type' => 1, 'status' => 1]);
 
-        return $columns;
+        return $columnData;
     }
 
     /**

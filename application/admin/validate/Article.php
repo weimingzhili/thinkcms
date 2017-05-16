@@ -15,8 +15,13 @@ class Article extends Validate
         'article_id|序号'     => 'require|number|gt:0',
         'column_id|栏目'      => 'require|number|gt:0',
         'title|文章标题'      => 'require|max:150',
+        'subtitle|子标题'     => 'max:300',
+        'thumb|缩略图'        => 'max:255',
         'list_order|排序序号' => 'require|number|egt:0',
-        'status|状态'         => 'require|number|in:-1,0,1'
+        'source|来源'         => 'max:255',
+        'admin|管理员账号'    => 'require|require|alphaDash|max:20',
+        'status|状态'         => 'require|number|in:-1,0,1',
+        'content|文章内容'    => 'require|max:65532'
     ];
 
     // 验证场景
@@ -27,5 +32,11 @@ class Article extends Validate
         'sort'      => ['article_id', 'list_order'],
         // 设置状态
         'setStatus' => ['article_id', 'status'],
+        // 添加
+        'add' => ['title', 'subtitle', 'thumb', 'column_id', 'source', 'content', 'description', 'keywords', 'admin'],
+        // 添加文章
+        'addArticle' => ['title', 'subtitle', 'thumb', 'column_id', 'source', 'description', 'keywords', 'admin'],
+        // 添加文章内容
+        'addContent' => ['article_id', 'content'],
     ];
 }
