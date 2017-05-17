@@ -30,12 +30,15 @@ class Menu extends Base
         // 获取请求参数
         $param['type'] = $request->param('type', '', 'intval');
         $checkRes = $this->validate($param, 'Menu.filter');
-        if($checkRes === true) {
-            // 将请求参数转换成分页查询条件和分页查询参数
-            if(!empty($param['type'])) {
-                $where['type'] = $param['type'];
-                $query['query']['type'] = $param['type'];
-            }
+        if($checkRes !== true) {
+            // 输出错误页面
+            $this->error($checkRes);
+        }
+
+        // 将请求参数转换成分页查询条件和分页查询参数
+        if(!empty($param['type'])) {
+            $where['type'] = $param['type'];
+            $query['query']['type'] = $param['type'];
         }
 
         // 获取分页数据
@@ -44,7 +47,7 @@ class Menu extends Base
 
         // 注册数据
         $this->assign([
-            'type' => $param['type'],
+            'type'     => $param['type'],
             'pageList' => $pageData['pageList'],
             'pageNav'  => $pageData['pageNav'],
         ]);
@@ -105,15 +108,22 @@ class Menu extends Base
     {
         // 输出编辑页
         if($request->isGet()) {
+            // 请求参数
+            $param = [];
             // 获取主键
-            $menu_id  = $request->param('menu_id', 0, 'intval');
+            $param['menu_id'] = $request->param('menu_id', 0, 'intval');
+            $checkRes         = $this->validate($param, 'Menu.pk');
+            if($checkRes !== true) {
+                $this->error($checkRes);
+            }
+
             // 获取菜单
             $menuModel = Loader::model('Menu');
-            $menu      = $menuModel->getMenu($menu_id);
+            $menu      = $menuModel->getMenu($param['menu_id']);
 
             // 注册数据
             $this->assign([
-                'menu_id' => $menu_id,
+                'menu_id' => $param['menu_id'],
                 'menu'    => $menu,
             ]);
 
@@ -130,7 +140,7 @@ class Menu extends Base
         $param['action']     = $request->param('action', '', 'trim,htmlspecialchars');     // 方法
         $param['status']     = $request->param('status', 0, 'trim,htmlspecialchars');      // 状态
         // 验证参数
-        $checkRes = $this->validate($param, 'Menu.edit');
+        $checkRes = $this->validate($param, 'Menu.save');
         if($checkRes !== true) {
             return ['status' => 0, 'message' => $checkRes];
         }

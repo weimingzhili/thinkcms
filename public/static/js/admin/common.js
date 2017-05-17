@@ -22,6 +22,7 @@ var Common = {
     articleSort: '/article/sort', // 排序
     articleSetStatus: 'article/setStatus', // 设置状态
     upload: '/upload', // 上传
+    articleEdit: '/article/edit', // 编辑
 
     // 排序，需传入排序按钮的事件过滤器、主键和请求方法的url
     sort: function(filter, pk, url) {

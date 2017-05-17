@@ -24,12 +24,14 @@ class Menu extends Validate
 
     // 验证场景
     protected $scene = [
+        // 主键
+        'pk'        => 'menu_id',
         // 筛选
         'filter'    => ['type' => 'number|in:1,2'],
         // 添加
         'add'       => ['menu_name', 'type', 'module', 'controller', 'action', 'status'],
         // 编辑
-        'edit'      => ['menu_id', 'menu_name', 'type', 'module', 'controller', 'action', 'status' => 'require|number|in:0,1'],
+        'save'      => ['menu_id', 'menu_name', 'type', 'module', 'controller', 'action', 'status' => 'require|number|in:0,1'],
         // 排序
         'sort'      => ['menu_id', 'list_order'],
         // 设置状态

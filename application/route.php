@@ -32,3 +32,4 @@ Route::rule('article/add', 'admin/Article/add', 'GET|POST'); // 添加
 Route::post(['article/sort' => 'admin/Article/sort']); // 排序
 Route::post(['article/setStatus' => 'admin/Article/setStatus']); // 设置状态
 Route::post(['upload' => 'admin/Article/upload']); // 上传
+Route::rule('article/edit', 'admin/Article/edit', 'GET|POST'); // 编辑

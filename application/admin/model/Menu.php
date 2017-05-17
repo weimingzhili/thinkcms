@@ -175,7 +175,7 @@ class Menu extends Model
     public function menuUpdate($data)
     {
         // 更新记录
-        $result = $this->validate('Menu.edit')
+        $result = $this->validate('Menu.save')
                   ->allowField(['menu_name', 'type', 'module', 'controller', 'action', 'status'])
                   ->save($data, ['menu_id' => $data['menu_id']]);
         if($result === false) {

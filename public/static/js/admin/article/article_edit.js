@@ -1,5 +1,5 @@
 /**
- * 文章添加
+ * 文章编辑
  * @author WeiZeng
  */
 
@@ -29,6 +29,16 @@ layui.upload({
         }
     }
 });
+
+// 若缩略图存在，显示预览
+if($('input[name="thumb"]').val()) {
+    // 渲染上传表单盒子
+    $('.upload-bar').addClass('upload-form-box');
+    // 渲染上传按钮盒子
+    $('.layui-upload-button').addClass('uploaded-button');
+    // 展示预览
+    $('#thumb').show();
+}
 
 // 文章内容插入图片
 layui.layedit.set({
@@ -74,8 +84,8 @@ layui.form().verify({
     }
 });
 
-// 添加
-layui.form().on('submit(addBtn)', function(data) {
+// 保存
+layui.form().on('submit(saveBtn)', function(data) {
     // 获取文章内容
     var content = layui.layedit.getContent(index);
     if(!content) {
@@ -99,18 +109,15 @@ layui.form().on('submit(addBtn)', function(data) {
     data.field.content = content;
 
     $.ajax({
-        url: Common.articleAdd,
+        url: Common.articleEdit,
         type: 'POST',
         dataType: 'JSON',
         data: data.field,
         success: function(result) {
             if(result['status'] === 1) {
-                layer.confirm('添加成功', {
-                    title: '成功提示',
+                layer.msg(result['message'], {
                     icon: 1,
-                    btn: ['继续添加', '转到列表']
-                }, function() {
-                    window.location.reload();
+                    time: 1000
                 }, function() {
                     window.location.href = Common.article;
                 });

@@ -1,30 +1,30 @@
 {extend name="base" /}
 
 {block name="css"}
-  <link rel="stylesheet" href="__PUBLIC__/css/admin/article/article_add.css" media="all">
+  <link rel="stylesheet" href="__PUBLIC__/css/admin/article/article_edit.css" media="all">
 {/block}
 
 {block name="main"}
   <!-- 面包屑导航 -->
   <span class="layui-breadcrumb">
-    <a href="{:url('admin/Article/index')}" title="文章管理">文章管理</a>
-    <a><cite>文章添加</cite></a>
+    <a href="{:url('admin/Article/index')}" type="文章管理">文章管理</a>
+    <a><cite>文章编辑</cite></a>
   </span>
   <hr>
-  <!-- 添加菜单 -->
-  <form class="layui-form" id="addForm" role="form">
+  <!-- 编辑表单 -->
+  <form class="layui-form" id="editForm" role="form">
     <!-- 标题 -->
     <div class="layui-form-item">
       <label class="layui-form-label">标题</label>
       <div class="layui-input-block">
-        <input type="text" class="layui-input" name="title" title="文章标题" autofocus placeholder="请填写文章标题" lay-verify="required|title">
+        <input type="text" class="layui-input" name="title" value="{$articleData->title}" title="文章标题" placeholder="请填写文章标题" lay-verify="required|title">
       </div>
     </div>
     <!-- 子标题 -->
     <div class="layui-form-item">
       <label class="layui-form-label">子标题</label>
       <div class="layui-input-block">
-        <input type="text" class="layui-input" name="subtitle" title="子标题" placeholder="请填写子标题" lay-verify="subtitle">
+        <input type="text" class="layui-input" name="subtitle" value="{$articleData->subtitle}" title="子标题" placeholder="请填写子标题" lay-verify="subtitle">
       </div>
     </div>
     <!-- 缩略图 -->
@@ -32,8 +32,8 @@
       <label class="layui-form-label">缩略图</label>
       <div class="layui-input-block">
         <div class="upload-box">
-          <img src="" id="thumb" alt="预览">
-          <input type="hidden" name="thumb" value="">
+          <img src="{$articleData->getData('thumb')}" id="thumb" alt="预览">
+          <input type="hidden" name="thumb" value="{$articleData->getData('thumb')}">
           <div class="upload-bar">
             <input type="file" class="layui-upload-file" name="file">
           </div>
@@ -48,7 +48,7 @@
         <select name="column_id" title="栏目" lay-verify="required">
           <option value="">请选择栏目</option>
           {volist name="columnData" id="column"}
-            <option value="{$column->menu_id}">{$column->menu_name}</option>
+            <option value="{$column->menu_id}" {eq name="articleData->getData('column_id')" value="$column->menu_id"}selected{/eq}>{$column->menu_name}</option>
           {/volist}
         </select>
       </div>
@@ -57,36 +57,37 @@
     <div class="layui-form-item">
       <label class="layui-form-label">来源</label>
       <div class="layui-input-block">
-        <input type="text" class="layui-input" name="source" title="来源" placeholder="请填写文章来源" lay-verify="source">
+        <input type="text" class="layui-input" name="source" value="{$articleData->source}" title="来源" placeholder="请填写文章来源"  lay-verify="source">
       </div>
     </div>
     <!-- 内容 -->
     <div class="layui-form-item">
       <label class="layui-form-label">内容</label>
       <div class="layui-input-block">
-        <textarea name="content" id="content" placeholder="请填写文章内容"></textarea>
+        <textarea name="content" id="content" placeholder="请填写文章内容">{$articleData->article_content->content}</textarea>
       </div>
     </div>
     <!-- 描述 -->
     <div class="layui-form-item">
       <label class="layui-form-label">描述</label>
       <div class="layui-input-block">
-        <input type="text" class="layui-input" name="description" title="描述" placeholder="请填写文章描述" lay-verify="description">
+        <input type="text" class="layui-input" name="description" value="{$articleData->description}" title="描述" placeholder="请填写文章描述" lay-verify="description">
       </div>
     </div>
     <!-- 关键词 -->
     <div class="layui-form-item">
       <label class="layui-form-label">关键词</label>
       <div class="layui-input-block">
-        <input type="text" class="layui-input" name="keywords" title="关键词" placeholder="请填写关键词" lay-verify="keywords">
+        <input type="text" class="layui-input" name="keywords" value="{$articleData->keywords}" title="关键词" placeholder="请填写关键词" lay-verify="keywords">
         每篇文章最多3个关键词，每个关键词长度在10个字符及以内，多个关键词用空格隔开
       </div>
     </div>
+    <input type="hidden" name="article_id" value="{$articleData->article_id}">
     <!-- 添加按钮 -->
-    <button type="submit" class="layui-btn layui-btn-normal" id="addBtn" lay-submit lay-filter="addBtn">添 加</button>
+    <button type="submit" class="layui-btn layui-btn-normal" id="saveBtn" lay-submit lay-filter="saveBtn">保 存</button>
   </form>
 {/block}
 
 {block name="js"}
-  <script src="__PUBLIC__/js/admin/article/article_add.js" charset="UTF-8"></script>
+  <script src="__PUBLIC__/js/admin/article/article_edit.js" charset="UTF-8"></script>
 {/block}

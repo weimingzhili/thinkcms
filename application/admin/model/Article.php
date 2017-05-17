@@ -14,8 +14,11 @@ use think\Model;
  */
 class Article extends Model
 {
-    // 数据加成：新增
+    // 数据完成：新增
     protected $insert = ['create_time'];
+
+    // 数据完成：更新
+    protected $update = ['update_time'];
 
     /**
      * 与文章内容模型一对一关联
@@ -107,6 +110,16 @@ class Article extends Model
     }
 
     /**
+     * 更新时间修改器
+     * @access public
+     * @return int
+     */
+    public function setUpdateTimeAttr()
+    {
+        return time();
+    }
+
+    /**
      * 获取文章总数
      * @access public
      * @return int
@@ -117,6 +130,20 @@ class Article extends Model
         $total = self::where(['status' => ['<>', '-1']])->count();
 
         return $total;
+    }
+
+    /**
+     * 获取文章数据
+     * @access public
+     * @param int $article_id 文章序号
+     * @return object
+     */
+    public function getArticleData($article_id)
+    {
+        // 预关联查询
+        $articleData = self::get($article_id, 'article_content');
+
+        return $articleData;
     }
 
     /**
@@ -178,17 +205,16 @@ class Article extends Model
     /**
      * 文章添加
      * @access public
-     * @param array $articleData 文章添加数据
-     * @param string $content 文章内容
+     * @param array $data 添加数据
      * @return bool
      * @throws Exception
      */
-    public function articleAdd($articleData, $content)
+    public function articleAdd($data)
     {
         // 往article表插入记录
         $result = $this->validate('Article.addArticle')
                   ->allowField(['title', 'subtitle', 'thumb', 'column_id', 'source', 'description', 'keywords', 'admin'])
-                  ->save($articleData);
+                  ->save($data);
         if($result === false) {
             throw new Exception('文章添加出错');
         }
@@ -200,9 +226,37 @@ class Article extends Model
         $addRes = $this->validate('Article.addContent')
                   ->allowField(['article_id,content'])
                   ->articleContent()
-                  ->save(['article_id' => $article_id, 'content' => $content]);
+                  ->save(['article_id' => $article_id, 'content' => $data['content']]);
         if($addRes === false) {
             throw new Exception('文章内容添加出错');
+        }
+
+        return true;
+    }
+
+    /**
+     * 文章更新
+     * @access public
+     * @param array $data 更新数据
+     * @return bool
+     * @throws Exception
+     */
+    public function articleUpdate($data)
+    {
+        // 更新文章
+        $result = $this->validate('Article.saveArticle')
+                  ->allowField(['title', 'subtitle', 'thumb', 'column_id', 'source', 'description', 'keywords', 'admin', 'article_id'])
+                  ->save($data, ['article_id' => $data['article_id']]);
+        if($result === false) {
+            throw new Exception('文章更新出错');
+        }
+
+        // 更新文章内容
+        $updateRes = $this->validate('Article.saveContent')
+                     ->article_content
+                     ->save(['content' => $data['content']], ['article_id' => $data['article_id']]);
+        if($updateRes === false) {
+            throw new Exception('文章内容更新出错');
         }
 
         return true;
