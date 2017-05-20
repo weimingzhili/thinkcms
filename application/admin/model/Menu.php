@@ -91,7 +91,7 @@ class Menu extends Model
     }
 
     /**
-     * 菜单分页
+     * 分页
      * @access public
      * @param array $where 查询条件
      * @param array $query 查询参数

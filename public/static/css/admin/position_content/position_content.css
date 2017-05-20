@@ -1,21 +1,11 @@
 /**
-文章列表
+推荐位内容列表
 @author WeiZeng
  */
 
-/* 排序按钮*/
+/* 排序按钮 */
 .list-order-input {
     width: 100px;
-}
-
-/* 操作按钮盒子 */
-#actionBox {
-    float: left;
-}
-
-/* 推送表单 */
-#pushForm {
-    float: left;
 }
 
 /* 分页导航 */

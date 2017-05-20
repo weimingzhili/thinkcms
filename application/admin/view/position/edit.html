@@ -1,0 +1,46 @@
+{extend name="base" /}
+
+{block name="css"}
+  <link rel="stylesheet" href="__PUBLIC__/css/admin/position/position_edit.css" media="all">
+{/block}
+
+{block name="main"}
+  <!-- 面包屑导航 -->
+  <span class="layui-breadcrumb">
+      <a href="{:url('admin/Position/index')}" title="推荐位管理">推荐位管理</a>
+      <a><cite>推荐位编辑</cite></a>
+    </span>
+  <hr>
+  <!-- 编辑表单 -->
+  <form class="layui-form" role="form">
+    <!-- 推荐位名称 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">推荐位名称</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input" name="position_name" value="{$position->position_name}" title="推荐位名称" placeholder="请填写推荐位名称" lay-verify="required|position_name">
+      </div>
+    </div>
+    <!-- 推荐位描述 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">推荐位描述</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input" name="description" value="{$position->description}" title="推荐位描述" placeholder="请填写推荐位描述" lay-verify="description">
+      </div>
+    </div>
+    <!-- 状态 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">状态</label>
+      <div class="layui-input-block">
+        <input type="radio" class="layui-input" name="status" value="1" title="启用" {eq name="position->getData('status')" value="1"}checked{/eq}>
+        <input type="radio" class="layui-input" name="status" value="0" title="禁用" {eq name="position->getData('status')" value="0"}checked{/eq}>
+      </div>
+    </div>
+    <input type="hidden" name="position_id" value="{$position_id}">
+    <!-- 保存按钮 -->
+    <button type="submit" class="layui-btn layui-btn-normal" id="saveBtn" lay-submit lay-filter="saveBtn">保 存</button>
+  </form>
+{/block}
+
+{block name="js"}
+  <script src="__PUBLIC__/js/admin/position/position_edit.js" charset="UTF-8"></script>
+{/block}

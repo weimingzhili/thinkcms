@@ -41,8 +41,8 @@ class Article extends Model
         // 栏目名
         $column_name = '';
 
-        // 获取栏目
-        $menuModel = Loader::model('Menu');
+        // 获取所有栏目
+        $menuModel  = Loader::model('Menu');
         $columnData = $menuModel->getColumnAll();
 
         // 获取栏目名

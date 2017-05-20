@@ -31,8 +31,9 @@ class Article extends Base
         $query = ['query' => []];            // 分页查询参数
 
         // 获取请求参数
-        $param['column_id'] = $request->param('column_id', '', 'intval'); // 栏目
+        $param['column_id'] = $request->param('column_id', 0, 'intval'); // 栏目
         $param['title']     = $request->param('title', '', 'trim,htmlspecialchars'); // 文章标题
+        // 验证参数
         $checkRes = $this->validate($param, 'Article.filter');
         if($checkRes !== true) {
             $this->error($checkRes);
@@ -164,8 +165,9 @@ class Article extends Base
     public function setStatus(Request $request)
     {
         // 请求参数
+        $param               = [];
         $param['article_id'] = $request->param('article_id', 0, 'intval'); // 主键
-        $param['status']     = $request->param('status', 0, 'intval'); // 状态
+        $param['status']     = $request->param('status', 0, 'intval');     // 状态
         // 验证参数
         $checkRes = $this->validate($param, 'article.setStatus');
         if($checkRes !== true) {

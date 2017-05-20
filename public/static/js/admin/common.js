@@ -10,19 +10,30 @@ var Common = {
     dashboard: '/dashboard',
 
     // 菜单管理
-    menu: '/menu',          // 列表
-    menuSort: '/menu/sort', // 排序
-    menuAdd: '/menu/add', // 添加
-    menuEdit: '/menu/edit', // 编辑
+    menu: '/menu',                    // 列表
+    menuSort: '/menu/sort',           // 排序
+    menuAdd: '/menu/add',             // 添加
+    menuEdit: '/menu/edit',           // 编辑
     menuSetStatus: '/menu/setStatus', // 设置状态
 
     // 文章管理
-    article: '/article', // 列表
-    articleAdd: '/article/add', // 添加
-    articleSort: '/article/sort', // 排序
+    article: '/article',                   // 列表
+    articleAdd: '/article/add',            // 添加
+    articleSort: '/article/sort',          // 排序
     articleSetStatus: 'article/setStatus', // 设置状态
-    upload: '/upload', // 上传
-    articleEdit: '/article/edit', // 编辑
+    upload: '/upload',                     // 上传
+    articleEdit: '/article/edit',          // 编辑
+
+    // 推荐位管理
+    position: '/position',                    // 列表
+    positionSetStatus: '/position/setStatus', // 设置状态
+    positionAdd: '/position/add',             // 添加
+    positionEdit: '/position/edit',           // 编辑
+
+    // 推荐位内容
+    positionContent: '/positionContent',                    // 列表
+    positionContentSort: '/positionContent/sort',           // 排序
+    positionContentSetStatus: '/positionContent/setStatus', // 设置状态
 
     // 排序，需传入排序按钮的事件过滤器、主键和请求方法的url
     sort: function(filter, pk, url) {

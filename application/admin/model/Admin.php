@@ -43,7 +43,7 @@ class Admin extends Model
     public function getAdminByAccount($account)
     {
         // 查询记录
-        $admin = self::get(['account' => $account]);
+        $admin = self::get(['account' => $account, 'status' => 1]);
 
         return $admin;
     }

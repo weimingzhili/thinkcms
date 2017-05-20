@@ -7,7 +7,7 @@
 {block name="main"}
   <!-- 面包屑导航 -->
   <span class="layui-breadcrumb">
-    <a href="{:url('admin/Article/index')}" type="文章管理">文章管理</a>
+    <a href="{:url('admin/Article/index')}" title="文章管理">文章管理</a>
     <a><cite>文章列表</cite></a>
   </span>
   <hr>
@@ -94,6 +94,10 @@
                 <!-- 删除 -->
                 <button type="button" class="layui-btn layui-btn-small layui-btn-primary deleteBtn" data-article_id="{$article->article_id}">
                   <i class="layui-icon">&#xe640;</i> 删除
+                </button>
+                <!-- 预览 -->
+                <button type="button" class="layui-btn layui-btn-small layui-btn-primary" data-article_id="{$article->article_id}">
+                  <i class="layui-icon">&#xe609;</i> 预览
                 </button>
               </div>
             </td>

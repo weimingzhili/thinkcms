@@ -52,37 +52,37 @@
       <tbody>
       {volist name="pageList" id="menu"}
         <tr>
-        <td>
-          <input type="number" class="layui-input list-order-input" name="{$menu->menu_id}" value="{$menu->list_order}" title="排序" >
-        </td>
-        <td>{$menu->menu_id}</td>
-        <td>{$menu->menu_name}</td>
-        <td>{$menu->module}</td>
-        <td>{$menu->controller}</td>
-        <td>{$menu->action}</td>
-        <td>{$menu->type}</td>
-        <td>{$menu->status}</td>
-        <td>
-          <div class="layui-btn-group">
-            <!-- 编辑 -->
-            <button type="button" class="layui-btn layui-btn-small layui-btn-primary editBtn" data-menu_id="{$menu->menu_id}">
-              <i class="layui-icon">&#xe642;</i> 编辑
-            </button>
-            <!-- 启用 -->
-            <button type="button" class="layui-btn layui-btn-small layui-btn-primary enableBtn" data-menu_id="{$menu->menu_id}">
-              <i class="layui-icon">&#xe616;</i> 启用
-            </button>
-            <!-- 禁用 -->
-            <button type="button" class="layui-btn layui-btn-small layui-btn-primary disableBtn" data-menu_id="{$menu->menu_id}">
-              <i class="layui-icon">&#x1007;</i> 禁用
-            </button>
-            <!-- 删除 -->
-            <button type="button" class="layui-btn layui-btn-small layui-btn-primary deleteBtn" data-menu_id="{$menu->menu_id}">
-              <i class="layui-icon">&#xe640;</i> 删除
-            </button>
-          </div>
-        </td>
-      </tr>
+          <td>
+            <input type="number" class="layui-input list-order-input" name="{$menu->menu_id}" value="{$menu->list_order}" title="排序" >
+          </td>
+          <td>{$menu->menu_id}</td>
+          <td>{$menu->menu_name}</td>
+          <td>{$menu->module}</td>
+          <td>{$menu->controller}</td>
+          <td>{$menu->action}</td>
+          <td>{$menu->type}</td>
+          <td>{$menu->status}</td>
+          <td>
+            <div class="layui-btn-group">
+              <!-- 编辑 -->
+              <button type="button" class="layui-btn layui-btn-small layui-btn-primary editBtn" data-menu_id="{$menu->menu_id}">
+                <i class="layui-icon">&#xe642;</i> 编辑
+              </button>
+              <!-- 启用 -->
+              <button type="button" class="layui-btn layui-btn-small layui-btn-primary enableBtn" data-menu_id="{$menu->menu_id}">
+                <i class="layui-icon">&#xe616;</i> 启用
+              </button>
+              <!-- 禁用 -->
+              <button type="button" class="layui-btn layui-btn-small layui-btn-primary disableBtn" data-menu_id="{$menu->menu_id}">
+                <i class="layui-icon">&#x1007;</i> 禁用
+              </button>
+              <!-- 删除 -->
+              <button type="button" class="layui-btn layui-btn-small layui-btn-primary deleteBtn" data-menu_id="{$menu->menu_id}">
+                <i class="layui-icon">&#xe640;</i> 删除
+              </button>
+            </div>
+          </td>
+        </tr>
       {/volist}
       </tbody>
     </table>
@@ -90,11 +90,11 @@
     <a href="{:url('admin/Menu/add')}" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe654;</i> 添 加</a>
     <!-- 排序 -->
     <button type="submit" class="layui-btn layui-btn-primary" lay-submit lay-filter="sortBtn">排 序</button>
-    <!-- 分页导航 -->
-    <nav>
-      {$pageNav}
-    </nav>
   </form>
+  <!-- 分页导航 -->
+  <nav>
+    {$pageNav}
+  </nav>
 {/block}
 
 {block name="js"}

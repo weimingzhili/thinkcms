@@ -1,0 +1,108 @@
+{extend name="base" /}
+
+{block name="css"}
+  <link rel="stylesheet" href="__PUBLIC__/css/admin/position_content/position_content.css" media="all">
+{/block}
+
+{block name="main"}
+  <!-- 面包屑导航 -->
+  <span class="layui-breadcrumb">
+    <a href="{:url('admin/PositionContent/index')}" title="推荐位内容管理">推荐位内容管理</a>
+    <a><cite>推荐完内容列表</cite></a>
+  </span>
+  <hr>
+  <!-- 筛选表单 -->
+  <form action="" class="layui-form" role="form">
+    <div class="layui-form-item">
+      <!-- 推荐位 -->
+      <div class="layui-inline">
+        <label class="layui-form-label">推荐位</label>
+        <div class="layui-input-inline">
+          <select name="position_id" title="推荐位下拉选择框">
+            <option value="">请选择所属推荐位</option>
+            {volist name="positionData" id="position"}
+              <option value="{$position->position_id}" {eq name="position_id" value="$position->position_id"}selected{/eq}>{$position->position_name}</option>
+            {/volist}
+          </select>
+        </div>
+      </div>
+      <!-- 文章标题 -->
+      <div class="layui-inline">
+        <label class="layui-form-label">文章标题</label>
+        <div class="layui-input-inline">
+          <input type="text" class="layui-input" name="title" value="{$title}" title="文章标题" placeholder="请输入文章标题">
+        </div>
+      </div>
+      <!-- 筛选按钮 -->
+      <div class="layui-inline">
+        <div class="layui-input-inline">
+          <button type="submit" class="layui-btn"><i class="layui-icon">&#xe615;</i> 筛 选</button>
+        </div>
+      </div>
+    </div>
+  </form>
+  <!-- 展示表单 -->
+  <form class="layui-form" role="form">
+    <!-- 展示表格 -->
+    <table class="layui-table">
+      <thead>
+        <tr>
+          <th>排序</th>
+          <th>序号</th>
+          <th>文章标题</th>
+          <th>推荐位</th>
+          <th>缩略图</th>
+          <th>创建时间</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        {volist name="pageList" id="positionContent"}
+          <tr>
+            <td><input type="number" class="layui-input list-order-input" name="{$positionContent->position_content_id}" value="{$positionContent->list_order}" title="排序"></td>
+            <td>{$positionContent->position_content_id}</td>
+            <td>{$positionContent->title}</td>
+            <td>{$positionContent->position_id}</td>
+            <td>{$positionContent->thumb}</td>
+            <td>{$positionContent->create_time}</td>
+            <td>{$positionContent->status}</td>
+            <td>
+              <div class="layui-btn-group">
+                <!-- 编辑 -->
+                <button type="button" class="layui-btn layui-btn-small layui-btn-primary editBtn" data-position_content_id="{$positionContent->position_content_id}">
+                  <i class="layui-icon">&#xe642;</i> 编辑
+                </button>
+                <!-- 启用 -->
+                <button type="button" class="layui-btn layui-btn-small layui-btn-primary enableBtn" data-position_content_id="{$positionContent->position_content_id}">
+                  <i class="layui-icon">&#xe616;</i> 启用
+                </button>
+                <!-- 禁用 -->
+                <button type="button" class="layui-btn layui-btn-small layui-btn-primary disableBtn" data-position_content_id="{$positionContent->position_content_id}">
+                  <i class="layui-icon">&#x1007;</i> 禁用
+                </button>
+                <!-- 删除 -->
+                <button type="button" class="layui-btn layui-btn-small layui-btn-primary deleteBtn" data-position_content_id="{$positionContent->position_content_id}">
+                  <i class="layui-icon">&#xe640;</i> 删除
+                </button>
+              </div>
+            </td>
+          </tr>
+        {/volist}
+
+      </tbody>
+    </table>
+    <!-- 添加 -->
+    <a href="{:url('admin/PositionContent/add')}" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe654;</i> 添 加</a>
+    <!-- 排序 -->
+    <button type="submit" class="layui-btn layui-btn-primary" lay-submit lay-filter="sortBtn">排 序</button>
+  </form>
+  <!-- 分页导航 -->
+  <nav>
+    {$pageNav}
+  </nav>
+{/block}
+
+{block name="js"}
+  <script src="__PUBLIC__/js/admin/position_content/position_content.js" charset="UTF-8"></script>
+{/block}

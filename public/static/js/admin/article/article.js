@@ -21,12 +21,13 @@ $('.editBtn').click(function() {
     var article_id = $(this).data('article_id');
     if(!article_id) {
         layer.alert('发生错误', {
-            title: '操作提示',
+            title: '错误提示',
             icon: 2
         });
 
         return false;
     }
 
+    // 转到编辑页
     window.location.href = Common.articleEdit + '.html?article_id=' + article_id;
 });

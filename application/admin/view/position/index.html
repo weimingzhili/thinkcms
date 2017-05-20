@@ -1,0 +1,72 @@
+{extend name="base" /}
+
+{block name="css"}
+  <link rel="stylesheet" href="__PUBLIC__/css/admin/position/position.css" media="all">
+{/block}
+
+{block name="main"}
+  <!-- 面包屑导航 -->
+  <span class="layui-breadcrumb">
+    <a href="{:url('admin/Position/index')}" title="推荐位管理">推荐位管理</a>
+    <a><cite>推荐位列表</cite></a>
+  </span>
+  <hr>
+  <!-- 展示表单 -->
+  <form class="layui-form" role="form">
+    <!-- 展示表格 -->
+    <table class="layui-table">
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>推荐位名称</th>
+          <th>描述</th>
+          <th>创建时间</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        {volist name="pageList" id="position"}
+          <tr>
+            <td>{$position->position_id}</td>
+            <td>{$position->position_name}</td>
+            <td>{$position->description}</td>
+            <td>{$position->create_time}</td>
+            <td>{$position->status}</td>
+            <td>
+              <div class="layui-btn-group">
+                <!-- 编辑 -->
+                <button type="button" class="layui-btn layui-btn-small layui-btn-primary editBtn" data-position_id="{$position->position_id}">
+                  <i class="layui-icon">&#xe642;</i> 编辑
+                </button>
+                <!-- 启用 -->
+                <button type="button" class="layui-btn layui-btn-small layui-btn-primary enableBtn" data-position_id="{$position->position_id}">
+                  <i class="layui-icon">&#xe616;</i> 启用
+                </button>
+                <!-- 禁用 -->
+                <button type="button" class="layui-btn layui-btn-small layui-btn-primary disableBtn" data-position_id="{$position->position_id}">
+                  <i class="layui-icon">&#x1007;</i> 禁用
+                </button>
+                <!-- 删除 -->
+                <button type="button" class="layui-btn layui-btn-small layui-btn-primary deleteBtn" data-position_id="{$position->position_id}">
+                  <i class="layui-icon">&#xe640;</i> 删除
+                </button>
+              </div>
+            </td>
+          </tr>
+        {/volist}
+
+      </tbody>
+    </table>
+    <!-- 添加 -->
+    <a href="{:url('admin/Position/add')}" class="layui-btn layui-btn-normal"><i class="layui-icon">&#xe654;</i> 添 加</a>
+    <!-- 分页导航 -->
+    <nav>
+      {$pageNav}
+    </nav>
+  </form>
+{/block}
+
+{block name="js"}
+  <script src="__PUBLIC__/js/admin/position/position.js" charset="UTF-8"></script>
+{/block}

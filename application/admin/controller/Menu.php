@@ -117,7 +117,7 @@ class Menu extends Base
                 $this->error($checkRes);
             }
 
-            // 获取菜单
+            // 获取菜单数据
             $menuModel = Loader::model('Menu');
             $menu      = $menuModel->getMenu($param['menu_id']);
 
