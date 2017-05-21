@@ -46,6 +46,17 @@ class PositionContent extends Model
     }
 
     /**
+     * 文章序号获取器
+     * @access public
+     * @param int $article_id 文章主键
+     * @return string
+     */
+    public function getArticleIdAttr($article_id)
+    {
+        return $article_id == 0 ? '' : $article_id;
+    }
+
+    /**
      * 缩略图获取器
      * @access public
      * @param string $thumb 缩略图
