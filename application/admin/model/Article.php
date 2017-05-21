@@ -133,6 +133,20 @@ class Article extends Model
     }
 
     /**
+     * 获取缩略图
+     * @access public
+     * @param int $article_id 文章序号
+     * @return string
+     */
+    public function getThumb($article_id)
+    {
+        // 查询记录
+        $thumb = self::where(['article_id' => $article_id])->value('thumb');
+
+        return $thumb;
+    }
+
+    /**
      * 获取文章数据
      * @access public
      * @param int $article_id 文章序号

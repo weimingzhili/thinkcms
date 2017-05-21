@@ -14,6 +14,9 @@ use think\Model;
  */
 class PositionContent extends Model
 {
+    // 数据完成：新增
+    protected $insert = ['create_time'];
+
     /**
      * 推荐位获取器
      * @access public
@@ -73,6 +76,16 @@ class PositionContent extends Model
     }
 
     /**
+     * 创建时间修改器
+     * @access public
+     * @return int
+     */
+    public function setCreateTimeAttr()
+    {
+        return time();
+    }
+
+    /**
      * 分页
      * @access public
      * @param array $where 查询条件
@@ -89,6 +102,26 @@ class PositionContent extends Model
         $pageNav = $pageList->render();
 
         return ['pageList' => $pageList, 'pageNav' => $pageNav];
+    }
+
+    /**
+     * 推荐位内容添加
+     * @access public
+     * @param array $data 添加数据
+     * @return bool
+     * @throws Exception
+     */
+    public function positionContentAdd($data)
+    {
+        // 插入记录
+        $result = $this->validate('PositionContent.add')
+                  ->allowField(['title', 'position_id', 'thumb', 'address', 'article_id'])
+                  ->save($data);
+        if($result === false) {
+            throw new Exception('添加出错');
+        }
+
+        return true;
     }
 
     /**

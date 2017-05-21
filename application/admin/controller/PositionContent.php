@@ -68,6 +68,60 @@ class PositionContent extends Base
     }
 
     /**
+     * 添加，GET请求输出添加页，POST请求执行添加操作
+     * @access public
+     * @param Request $request 请求对象
+     * @return array|\think\Response
+     */
+    public function add(Request $request)
+    {
+        // 输出添加页
+        if($request->isGet()) {
+            // 获取推荐位数据
+            $positionModel = Loader::model('Position');
+            $positionData  = $positionModel->getPositionAll();
+
+            // 注册数据
+            $this->assign('positionData', $positionData);
+
+            return $this->fetch();
+        }
+
+        // 请求参数
+        $param                = [];
+        $param['title']       = $request->param('title', '', 'trim,htmlspecialchars');   // 文章标题
+        $param['position_id'] = $request->param('position_id', 0, 'intval');             // 推荐位
+        $param['thumb']       = $request->param('thumb', '', 'trim,htmlspecialchars');   // 缩略图
+        $param['address']     = $request->param('address', '', 'trim,htmlspecialchars'); // 文章地址
+        $param['article_id']  = $request->param('article_id', 0, 'intval');              // 文章序号
+        // 验证参数
+        $checkRes = $this->validate($param, 'PositionContent.add');
+        if($checkRes !== true) {
+            return ['status' => 0, 'message' => $checkRes];
+        }
+
+        // 若thumb不存在，尝试从article表中获取
+        if(empty($param['thumb'])) {
+            $articleModel   = Loader::model('Article');
+            $param['thumb'] = $articleModel->getThumb($param['article_id']);
+        }
+
+        // 添加
+        try {
+            $positionContentModel = Loader::model('PositionContent');
+            $result               = $positionContentModel->positionContentAdd($param);
+            if($result === true) {
+                return ['status' => 1, 'message' => '添加成功'];
+            }
+
+            return ['status' => 0, 'message' => '添加失败'];
+        } catch (Exception $e) {
+            // 处理异常
+            return ['status' => 0, 'message' => $e->getMessage()];
+        }
+    }
+
+    /**
      * 排序
      * @access public
      * @param Request $request 请求对象

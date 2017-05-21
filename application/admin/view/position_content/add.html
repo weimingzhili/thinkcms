@@ -1,0 +1,70 @@
+{extend name="base" /}
+
+{block name="css"}
+  <link rel="stylesheet" href="__PUBLIC__/css/admin/position_content/position_content_add.css" media="all">
+{/block}
+
+{block name="main"}
+  <!-- 面包屑导航 -->
+  <span class="layui-breadcrumb">
+    <a href="{:url('admin/PositionContent/index')}" title="推荐位内容管理">推荐位内容管理</a>
+    <a><cite>推荐位内容添加</cite></a>
+  </span>
+  <hr>
+  <!-- 添加表单 -->
+  <form class="layui-form" role="form">
+    <!-- 文章标题 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">文章标题</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input" name="title" title="文章标题" autofocus placeholder="请填写文章标题" lay-verify="required|title">
+      </div>
+    </div>
+    <!-- 推荐位 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">推荐位</label>
+      <div class="layui-input-block">
+        <select name="position_id" title="推荐位下拉选择框" lay-verify="required">
+          <option value="">请选择所属推荐位</option>
+          {volist name="positionData" id="position"}
+          <option value="{$position->position_id}">{$position->position_name}</option>
+          {/volist}
+        </select>
+      </div>
+    </div>
+    <!-- 缩略图 -->
+    <div class="layui-form-item" id="uploadBox">
+      <label class="layui-form-label">缩略图</label>
+      <div class="layui-input-block">
+        <div class="upload-box">
+          <img src="" id="thumb" alt="预览">
+          <input type="hidden" name="thumb" value="">
+          <div class="upload-bar">
+            <input type="file" class="layui-upload-file" name="file">
+          </div>
+        </div>
+        请上传后缀为jpg、png或gif的图片，并且大小不超过1M
+      </div>
+    </div>
+    <!-- 文章地址 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">文章地址</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input" name="address" title="文章地址" placeholder="请填写文章地址" lay-verfiy="address">
+      </div>
+    </div>
+    <!-- 文章序号 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">文章序号</label>
+      <div class="layui-input-block">
+        <input type="number" class="layui-input" name="article_id" title="文章序号" placeholder="若非关联已有文章则不用填写" lay-verfiy="required|article_id">
+      </div>
+    </div>
+    <!-- 添加按钮 -->
+    <button type="submit" class="layui-btn layui-btn-normal" id="addBtn" lay-submit lay-filter="addBtn">添 加</button>
+  </form>
+{/block}
+
+{block name="js"}
+  <script src="__PUBLIC__/js/admin/position_content/position_content_add.js" charset="UTF-8"></script>
+{/block}

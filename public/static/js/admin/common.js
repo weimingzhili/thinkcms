@@ -34,6 +34,7 @@ var Common = {
     positionContent: '/positionContent',                    // 列表
     positionContentSort: '/positionContent/sort',           // 排序
     positionContentSetStatus: '/positionContent/setStatus', // 设置状态
+    positionContentAdd: '/positionContent/add',             // 添加
 
     // 排序，需传入排序按钮的事件过滤器、主键和请求方法的url
     sort: function(filter, pk, url) {

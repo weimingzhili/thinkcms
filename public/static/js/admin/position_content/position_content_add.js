@@ -1,5 +1,5 @@
 /**
- * 文章添加
+ * 推荐位内容添加
  * @author WeiZeng
  */
 
@@ -30,16 +30,6 @@ layui.upload({
     }
 });
 
-// 文章内容插入图片
-layui.layedit.set({
-    uploadImage: {
-        url: '/upload',
-        type: 'post'
-    }
-});
-// Layedit初始化
-var index = layui.layedit.build('content');
-
 // 表单验证
 layui.form().verify({
     // 标题
@@ -48,59 +38,47 @@ layui.form().verify({
             return '标题长度在150个字符及以内';
         }
     },
-    // 子标题
-    subtitle: function(value) {
-        if(value.length > 300) {
-            return '子标题长度在300个字符及以内';
-        }
-    },
-    // 来源
-    source: function(value) {
+    // 地址
+    address: function(value) {
         if(value.length > 255) {
             return '来源长度在255个字符及以内';
         }
     },
-    // 描述
-    description: function(value) {
-        if(value.length > 600) {
-            return '描述长度在600个字符及以内';
-        }
-    },
-    // 关键词
-    keywords: function(value) {
-        if(value.length > 120) {
-            return '关键词总长度在120个字符及以内';
+    // 文章序号
+    article_id: function(value) {
+        if(!new RegExp('^[1-9]\d*$').test(value)) {
+            return '文章序号只能是正整数';
         }
     }
 });
 
+
 // 添加
 layui.form().on('submit(addBtn)', function(data) {
-    // 获取文章内容
-    var content = layui.layedit.getContent(index);
-    if(!content) {
-        layer.alert('请填写文章内容', {
-            title: '错误提示',
-            icon: 2
-        });
+    // 判断添加数据是否符合要求
+    if(!data.field.article_id) {
+        if(!data.field.address) {
+            layer.alert('请填写文章地址或文章序号', {
+                title: '错误提示',
+                icon: 2
+            });
 
-        return false;
+            return false;
+        }
+
+        if(!data.field.thumb) {
+            layer.alert('添加站外文章必须上传缩略图！', {
+                title: '错误提示',
+                icon: 2
+            });
+
+            return false;
+        }
     }
-    if(content.length > 65532) {
-        layer.alert('文章内容长度在65532个字符及以内', {
-            title: '错误提示',
-            icon: 2
-        });
-
-        return false;
-    }
-
-    // 覆盖掉字段数据中的文章内容
-    data.field.content = content;
 
     // 添加请求
     $.ajax({
-        url: Common.articleAdd,
+        url: Common.positionContentAdd,
         type: 'POST',
         dataType: 'JSON',
         data: data.field,
@@ -113,7 +91,7 @@ layui.form().on('submit(addBtn)', function(data) {
                 }, function() {
                     window.location.reload();
                 }, function() {
-                    window.location.href = Common.article;
+                    window.location.href = Common.positionContent;
                 });
             }
             if(result['status'] === 0) {
