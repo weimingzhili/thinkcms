@@ -91,7 +91,7 @@ Common.setStatus('deleteBtn', 'article_id', -1, Common.articleSetStatus);
 
 // 跳转到编辑页
 $('.editBtn').click(function() {
-    // 获取文章序号
+    // 获取文章主键
     var article_id = $(this).data('article_id');
     if(!article_id) {
         layer.alert('发生错误', {

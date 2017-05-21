@@ -24,10 +24,14 @@ class PositionContent extends Validate
 
     // 验证场景
     protected $scene = [
+        // 主键
+        'pk'        => 'position_content_id',
         // 筛选
         'filter'    => ['position_id' => 'number', 'title' => 'max:150'],
         // 添加
         'add'       => ['title', 'position_id', 'thumb', 'address', 'article_id'],
+        // 编辑
+        'edit'      => ['position_content_id', 'title', 'position_id', 'thumb', 'address', 'article_id'],
         // 排序
         'sort'      => ['position_content_id', 'list_order'],
         // 设置状态

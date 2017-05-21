@@ -231,7 +231,7 @@ class Article extends Base
         if($request->isGet()) {
             // 请求数据
             $param = [];
-            // 获取文章序号
+            // 获取文章主键
             $param['article_id'] = $request->param('article_id', 0, 'intval');
             $checkRes            = $this->validate($param, 'Article.pk');
             if($checkRes !== true) {

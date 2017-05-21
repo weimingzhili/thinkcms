@@ -15,6 +15,9 @@ class Position extends Model
     // 数据完成：新增
     protected $insert = ['create_time'];
 
+    // 数据完成：更新
+    protected $update = ['update_time'];
+
     /**
      * 创建时间获取器
      * @access public
@@ -43,6 +46,16 @@ class Position extends Model
      * @return int
      */
     public function setCreateTimeAttr()
+    {
+        return time();
+    }
+
+    /**
+     * 更新时间修改器
+     * @access public
+     * @return int
+     */
+    public function setUpdateTimeAttr()
     {
         return time();
     }

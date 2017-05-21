@@ -122,6 +122,72 @@ class PositionContent extends Base
     }
 
     /**
+     * 编辑，GET请求输出编辑页，POST请求执行保存操作
+     * @access public
+     * @param Request $request 请求对象
+     * @return array|\think\Response
+     */
+    public function edit(Request $request)
+    {
+        // 输出编辑页
+        if($request->isGet()) {
+            // 请求数据
+            $param = [];
+            // 获取推荐位内容主键
+            $param['position_content_id'] = $request->param('position_content_id', 0, 'intval');
+            $checkRes                     = $this->validate($param, 'PositionContent.pk');
+            if($checkRes !== true) {
+                $this->error($checkRes);
+            }
+
+            // 获取推荐位内容数据
+            $positionContentModel = Loader::model('PositionContent');
+            $positionContent      = $positionContentModel->getPositionContent($param['position_content_id']);
+
+            // 获取推荐位数据
+            $positionModel = Loader::model('Position');
+            $positionData  = $positionModel->getPositionAll();
+
+            // 注册数据
+            $this->assign([
+                'position_content_id' => $param['position_content_id'],
+                'positionContent'     => $positionContent,
+                'positionData'        => $positionData,
+            ]);
+
+            return $this->fetch();
+        }
+
+        // 请求参数
+        $param                        = [];
+        $param['position_content_id'] = $request->param('position_content_id', 0, 'intval');     // 主键
+        $param['title']               = $request->param('title', '', 'trim,htmlspecialchars');   // 文章标题
+        $param['position_id']         = $request->param('position_id', 0, 'intval');             // 推荐位
+        $param['thumb']               = $request->param('thumb', '', 'trim,htmlspecialchars');   // 缩略图
+        $param['address']             = $request->param('address', '', 'trim,htmlspecialchars'); // 文章地址
+        $param['article_id']          = $request->param('article_id', 0, 'intval');              // 文章主键
+        // 验证参数
+        $checkRes = $this->validate($param, 'PositionContent.edit');
+        if($checkRes !== true) {
+            return ['status' => 0, 'message' => $checkRes];
+        }
+
+        // 保存
+        try {
+            $positionContentModel = Loader::model('PositionContent');
+            $result               = $positionContentModel->positionContentUpdate($param);
+            if($result === true) {
+                return ['status' => 1, 'message' => '保存成功'];
+            }
+
+            return ['status' => 0, 'message' => '保存失败'];
+        } catch (Exception $e) {
+            // 处理异常
+            return ['status' => 0, 'message' => $e->getMessage()];
+        }
+    }
+
+    /**
      * 排序
      * @access public
      * @param Request $request 请求对象

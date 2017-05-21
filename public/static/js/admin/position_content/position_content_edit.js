@@ -1,5 +1,5 @@
 /**
- * 推荐位内容添加
+ * 推荐位内容编辑
  * @author WeiZeng
  */
 
@@ -30,6 +30,16 @@ layui.upload({
     }
 });
 
+// 若缩略图存在，显示预览
+if($('input[name="thumb"]').val()) {
+    // 渲染上传表单盒子
+    $('.upload-bar').addClass('upload-form-box');
+    // 渲染上传按钮盒子
+    $('.layui-upload-button').addClass('uploaded-button');
+    // 展示预览
+    $('#thumb').show();
+}
+
 // 表单验证
 layui.form().verify({
     // 标题
@@ -46,15 +56,15 @@ layui.form().verify({
     },
     // 文章序号
     article_id: function(value) {
+        console.log(value);
         if(value && !new RegExp('^[0-9]*[1-9][0-9]*$').test(value)) {
             return '文章序号只能是正整数';
         }
     }
 });
 
-
-// 添加
-layui.form().on('submit(addBtn)', function(data) {
+// 保存
+layui.form().on('submit(saveBtn)', function(data) {
     // 判断添加数据是否符合要求
     if(!data.field.article_id) {
         if(!data.field.address) {
@@ -76,20 +86,17 @@ layui.form().on('submit(addBtn)', function(data) {
         }
     }
 
-    // 添加请求
+    // 保存请求
     $.ajax({
-        url: Common.positionContentAdd,
+        url: Common.positionContentEdit,
         type: 'POST',
         dataType: 'JSON',
         data: data.field,
         success: function(result) {
             if(result['status'] === 1) {
-                layer.confirm(result['message'], {
-                    title: '成功提示',
+                layer.msg(result['message'], {
                     icon: 1,
-                    btn: ['继续添加', '转到列表']
-                }, function() {
-                    window.location.reload();
+                    time: 1000
                 }, function() {
                     window.location.href = Common.positionContent;
                 });

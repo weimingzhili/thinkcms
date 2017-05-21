@@ -17,6 +17,9 @@ class PositionContent extends Model
     // 数据完成：新增
     protected $insert = ['create_time'];
 
+    // 数据完成：更新
+    protected $update = ['update_time'];
+
     /**
      * 推荐位获取器
      * @access public
@@ -83,6 +86,30 @@ class PositionContent extends Model
     public function setCreateTimeAttr()
     {
         return time();
+    }
+
+    /**
+     * 更新时间修改器
+     * @access public
+     * @return int
+     */
+    public function setUpdateTimeAttr()
+    {
+        return time();
+    }
+
+    /**
+     * 获取推荐位内容
+     * @access public
+     * @param int $position_content_id 推荐位内容主键
+     * @return object
+     */
+    public function getPositionContent($position_content_id)
+    {
+        // 查询记录
+        $positionContent = self::get($position_content_id);
+
+        return $positionContent;
     }
 
     /**
@@ -189,6 +216,26 @@ class PositionContent extends Model
         $result = $this->saveAll($pushData);
         if($result === false) {
             throw new Exception('插入记录出错');
+        }
+
+        return true;
+    }
+
+    /**
+     * 推荐位内容更新
+     * @access public
+     * @param array $data 更新数据
+     * @return bool
+     * @throws Exception
+     */
+    public function positionContentUpdate($data)
+    {
+        // 更新记录
+        $result = $this->validate('PositionContent.edit')
+                  ->allowField(['title', 'position_id', 'thumb', 'address', 'article_id'])
+                  ->save($data, ['position_content_id' => $data['position_content_id']]);
+        if($result === false) {
+            throw new Exception('更新出错');
         }
 
         return true;
