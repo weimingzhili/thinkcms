@@ -21,7 +21,8 @@ class Article extends Validate
         'source|来源'         => 'max:255',
         'admin|管理员账号'    => 'require|require|alphaDash|max:20',
         'status|状态'         => 'require|number|in:-1,0,1',
-        'content|文章内容'    => 'require|max:65532'
+        'content|文章内容'    => 'require|max:65532',
+        'pushData'           => 'checkPush',
     ];
 
     // 验证场景
@@ -46,5 +47,30 @@ class Article extends Validate
         'saveArticle' => ['title', 'subtitle', 'thumb', 'column_id', 'source', 'description', 'keywords', 'admin', 'article_id'],
         // 保存文章内容
         'saveContent' => ['article_id', 'content'],
+        // 推送
+        'push'        => 'pushData',
     ];
+
+    /**
+     * 推送验证规则
+     * @access public
+     * @param array $data 推送数据
+     * @return string|bool
+     */
+    public function checkPush($data)
+    {
+        // 验证推荐位
+        if(!preg_match('/^[1-9]\d*$/', $data['position_id'])) {
+            return '推荐位验证失败';
+        }
+
+        // 验证文章id
+        foreach($data['articleIdData'] as $value) {
+            if(!preg_match('/^[1-9]\d*$/', $value['article_id'])) {
+                return '文章序号验证失败';
+            }
+        }
+
+        return true;
+    }
 }

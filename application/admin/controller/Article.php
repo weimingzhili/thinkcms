@@ -57,13 +57,18 @@ class Article extends Base
         $menuModel  = Loader::model('Menu');
         $columnData = $menuModel->getColumnAll();
 
+        // 获取推荐位数据
+        $positionModel = Loader::model('Position');
+        $positionData  = $positionModel->getPositionAll();
+
         // 注册数据
         $this->assign([
-            'column_id'  => $param['column_id'],
-            'title'      => $param['title'],
-            'pageList'   => $pageData['pageList'],
-            'pageNav'    => $pageData['pageNav'],
-            'columnData' => $columnData,
+            'column_id'    => $param['column_id'],
+            'title'        => $param['title'],
+            'pageList'     => $pageData['pageList'],
+            'pageNav'      => $pageData['pageNav'],
+            'columnData'   => $columnData,
+            'positionData' => $positionData,
         ]);
 
         // 输出页面
@@ -280,6 +285,41 @@ class Article extends Base
             return ['status' => 0, 'message' => '保存失败'];
         } catch (Exception $e) {
             return ['status' => 0, 'messgae' => $e->getMessage()];
+        }
+    }
+
+    /**
+     * 推送
+     * @access public
+     * @param Request $request 请求对象
+     * @return array
+     */
+    public function push(Request $request)
+    {
+        // 获取推送数据
+        $param                 = $request->param(); // 请求参数
+        $data['pushData']      = [
+            'articleIdData' => $param['articleIdData'],
+            'position_id' => $param['position_id'],
+        ];
+        // 验证数据
+        $checkRes = $this->validate($data, 'Article.push');
+        if($checkRes !== true) {
+            return ['status' => 0, 'message' => $checkRes];
+        }
+
+        // 推送
+        try {
+            $positionContentModel = Loader::model('PositionContent');
+            $result               = $positionContentModel->articlePush($data);
+            if($result === true) {
+                return ['status' => 1, 'message' => '推送成功'];
+            }
+
+            return ['status' => 0, 'message' => '推送失败'];
+        } catch (Exception $e) {
+            // 处理异常
+            return ['status' => 0, 'message' => $e->getMessage()];
         }
     }
 }

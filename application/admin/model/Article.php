@@ -147,9 +147,25 @@ class Article extends Model
     }
 
     /**
+     * 获取文章推送数据
+     * @access public
+     * @param int $article_id 文章主键
+     * @return object
+     */
+    public function getPushData($article_id)
+    {
+        // 查询数据
+        $articlePushData = self::where(['article_id' => $article_id])
+                           ->field(['title', 'thumb', 'source'])
+                           ->find();
+
+        return $articlePushData;
+    }
+
+    /**
      * 获取文章数据
      * @access public
-     * @param int $article_id 文章序号
+     * @param int $article_id 文章主键
      * @return object
      */
     public function getArticleData($article_id)

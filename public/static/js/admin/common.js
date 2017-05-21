@@ -23,6 +23,7 @@ var Common = {
     articleSetStatus: 'article/setStatus', // 设置状态
     upload: '/upload',                     // 上传
     articleEdit: '/article/edit',          // 编辑
+    push: '/push',                         // 推送
 
     // 推荐位管理
     position: '/position',                    // 列表

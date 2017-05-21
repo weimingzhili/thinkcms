@@ -29,7 +29,7 @@ layui.form().on('submit(addBtn)', function(data) {
         data: data.field,
         success: function(result) {
             if(result['status'] === 1) {
-                layer.confirm('添加成功', {
+                layer.confirm(result['message'], {
                     title: '成功提示',
                     icon: 1,
                     btn: ['继续添加', '转到列表']

@@ -33,10 +33,11 @@ Route::post(['article/sort' => 'admin/Article/sort']);                         /
 Route::post(['article/setStatus' => 'admin/Article/setStatus']);               // 设置状态
 Route::post(['upload' => 'admin/Article/upload']);                             // 上传
 Route::rule('article/edit', 'admin/Article/edit', 'GET|POST'); // 编辑
+Route::post(['push' => 'admin/Article/push']);                                 // 推送
 
 // 推荐位管理
-Route::get(['position' => 'admin/Position/index']);                // 列表
-Route::post(['position/setStatus' => 'admin/Position/setStatus']); // 设置状态
+Route::get(['position' => 'admin/Position/index']);                                 // 列表
+Route::post(['position/setStatus' => 'admin/Position/setStatus']);                  // 设置状态
 Route::rule('position/add', 'admin/Position/add', 'GET|POST');     // 添加
 Route::rule('position/edit', 'admin/Position/edit', 'GET|POST');   // 编辑
 

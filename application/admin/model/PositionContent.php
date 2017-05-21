@@ -160,4 +160,37 @@ class PositionContent extends Model
 
         return true;
     }
+
+    /**
+     * 文章推送方法
+     * @access public
+     * @param array $data 推送数据
+     * @return bool
+     * @throws Exception
+     */
+    public function articlePush($data)
+    {
+        // 获取文章推送数据
+        $pushData     = [];
+        $articleModel = Loader::model('Article');
+
+        foreach ($data['pushData']['articleIdData'] as $value) {
+            $articlePushData = $articleModel->getPushData($value['article_id']);
+            $pushData[] = [
+                'article_id'  => $value['article_id'],
+                'position_id' => $data['pushData']['position_id'],
+                'title'       => $articlePushData->title,
+                'thumb'       => $articlePushData->getData('thumb'),
+                'address'     => $articlePushData->getData('source'),
+            ];
+        }
+
+        // 插入记录
+        $result = $this->saveAll($pushData);
+        if($result === false) {
+            throw new Exception('插入记录出错');
+        }
+
+        return true;
+    }
 }

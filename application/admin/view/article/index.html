@@ -42,13 +42,13 @@
     </div>
   </form>
   <!-- 展示表单 -->
-  <form class="layui-form" role="form">
+  <form class="layui-form" id="listForm" role="form">
     <!-- 展示表格 -->
     <table class="layui-table">
       <thead>
         <tr>
           <th>
-            <input type="checkbox" class="checkbox-input" name="article_id" value="" title="全选">
+            <input type="checkbox" class="checkbox-input" title="全选" lay-filter="selectAllBtn">
           </th>
           <th>排序</th>
           <th>序号</th>
@@ -123,15 +123,18 @@
       <div class="layui-inline">
         <label class="layui-form-label">推荐位</label>
         <div class="layui-input-inline">
-          <select name="position" title="推荐位下拉选择框">
+          <select name="position_id" title="推荐位下拉选择框" lay-verify="required">
             <option value="">请选择推荐位</option>
+            {volist name="positionData" id="position"}
+            <option value="{$position->position_id}">{$position->position_name}</option>
+            {/volist}
           </select>
         </div>
       </div>
       <!-- 推送按钮 -->
       <div class="layui-inline">
         <div class="layui-input-inline">
-          <button type="submit" class="layui-btn">推 送</button>
+          <button type="submit" class="layui-btn" lay-submit lay-filter="pushBtn">推 送</button>
         </div>
       </div>
     </div>
