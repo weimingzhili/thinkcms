@@ -61,7 +61,18 @@ class Base extends Controller
     {
         // 获取菜单
         $menuModel = Loader::model('Menu');
-        $naves = $menuModel->getAdminMenuAll();
+        $naves     = $menuModel->getAdminMenuAll();
+
+        // 权限控制
+        if($this->request->session('admin.type') == 2) {
+            foreach ($naves as $key => $value) {
+                if($value->menu_name == '管理员管理') {
+                    unset($naves[$key]);
+
+                    break;
+                }
+            }
+        }
 
         return $naves;
     }

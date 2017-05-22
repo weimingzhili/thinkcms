@@ -38,6 +38,10 @@ var Common = {
     positionContentAdd: '/positionContent/add',             // 添加
     positionContentEdit: '/positionContent/edit',           // 编辑
 
+    // 管理员管理
+    admin: '/admin',                    // 列表
+    adminSetStatus: '/admin/setStatus', // 设置状态
+
     // 排序，需传入排序按钮的事件过滤器、主键和请求方法的url
     sort: function(filter, pk, url) {
         layui.form().on('submit(' + filter + ')', function(data) {

@@ -141,6 +141,7 @@ class Position extends Base
     public function setStatus(Request $request)
     {
         // 请求参数
+        $param                = [];
         $param['position_id'] = $request->param('position_id', 0, 'intval'); // 主键
         $param['status']      = $request->param('status', 0, 'intval');      // 状态
         // 验证参数

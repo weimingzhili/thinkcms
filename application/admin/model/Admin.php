@@ -35,6 +35,28 @@ class Admin extends Model
     }
 
     /**
+     * 类型获取器
+     * @access public
+     * @param int $type 类型
+     * @return string
+     */
+    public function getTypeAttr($type)
+    {
+        return $type == 1 ? '超级管理员' : '管理员';
+    }
+
+    /**
+     * 状态获取器
+     * @access public
+     * @param int $status 状态
+     * @return string
+     */
+    public function getStatusAttr($status)
+    {
+        return $status == 1 ? '启用' : '禁用';
+    }
+
+    /**
      * 根据账号获取管理员
      * @access public
      * @param string $account 账号
@@ -59,6 +81,23 @@ class Admin extends Model
         $total = self::where(['status' => ['<>', -1]])->count();
 
         return $total;
+    }
+
+    /**
+     * 分页
+     * @access public
+     * @return array
+     */
+    public function adminPaginate()
+    {
+        // 获取分页记录
+        $pageList = self::where(['status' => ['<>', -1]])
+                    ->order(['admin_id' => 'desc'])
+                    ->paginate(5);
+        // 获取分页导航
+        $pageNav = $pageList->render();
+
+        return ['pageList' => $pageList, 'pageNav' => $pageNav];
     }
 
     /**
@@ -99,6 +138,25 @@ class Admin extends Model
                 ->save($data, ['account' => $data['account'], 'status' => 1]);
         if($result === false) {
             throw new Exception('登录更新失败');
+        }
+
+        return true;
+    }
+
+    /**
+     * 更新状态
+     * @access public
+     * @param array $data 更新数据
+     * @return bool
+     * @throws Exception
+     */
+    public function updateStatus($data)
+    {
+        // 更新记录
+        $result = $this->validate('Admin.setStatus')
+                  ->save($data, ['admin_id' => $data['admin_id']]);
+        if($result === false) {
+            throw new Exception('更新状态出错');
         }
 
         return true;

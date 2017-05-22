@@ -47,3 +47,7 @@ Route::post(['positionContent' => 'admin/PositionContent/sort']);               
 Route::post(['positionContent/setStatus' => 'admin/PositionContent/setStatus']); // 设置状态
 Route::rule('positionContent/add', 'admin/PositionContent/add', 'GET|POST');     // 添加
 Route::rule('positionContent/edit', 'admin/PositionContent/edit', 'GET|POST');   // 编辑
+
+// 管理员管理
+Route::get(['admin' => 'admin/Admin/index']);                // 列表
+Route::post(['admin/setStatus' => 'admin/Admin/setStatus']); // 设置状态

@@ -1,12 +1,7 @@
 /**
-菜单列表
+管理员列表
 @author WeiZeng
  */
-
-/* 排序按钮*/
-.list-order-input {
-    width: 100px;
-}
 
 /* 分页导航 */
 .pagination {
