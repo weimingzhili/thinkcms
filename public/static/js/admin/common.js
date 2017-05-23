@@ -40,6 +40,7 @@ var Common = {
 
     // 管理员管理
     admin: '/admin',                    // 列表
+    adminAdd: '/admin/add',             // 添加
     adminSetStatus: '/admin/setStatus', // 设置状态
 
     // 排序，需传入排序按钮的事件过滤器、主键和请求方法的url

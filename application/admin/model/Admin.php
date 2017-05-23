@@ -101,6 +101,26 @@ class Admin extends Model
     }
 
     /**
+     * 管理员添加
+     * @access public
+     * @param array $data 添加数据
+     * @return bool
+     * @throws Exception
+     */
+    public function adminAdd($data)
+    {
+        // 插入记录
+        $result = $this->validate('Admin.add')
+                  ->allowField(['account', 'password', 'real_name', 'email', 'type'])
+                  ->save($data);
+        if($result === false) {
+            throw new Exception('添加出错');
+        }
+
+        return true;
+    }
+
+    /**
      * 登录验证
      * @access public
      * @param string $account 账号

@@ -1,0 +1,59 @@
+{extend name="base" /}
+
+{block name="css"}
+  <link rel="stylesheet" href="__PUBLIC__/css/admin/admin/admin_add.css" media="all">
+{/block}
+
+{block name="main"}
+  <!-- 面包屑导航 -->
+  <span class="layui-breadcrumb">
+    <a href="{:url('admin/Admin/index')}" title="管理员管理">管理员管理</a>
+    <a><cite>管理员添加</cite></a>
+  </span>
+  <hr>
+  <!-- 添加表单 -->
+  <form class="layui-form" role="form">
+    <!-- 账号 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">账号</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input" name="account" title="账号" autofocus placeholder="请填写账号" lay-verify="required|account">
+      </div>
+    </div>
+    <!-- 密码 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">密码</label>
+      <div class="layui-input-block">
+        <input type="password" class="layui-input" name="password" title="密码" placeholder="请填写密码" lay-verify="required">
+      </div>
+    </div>
+    <!-- 真名 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">真名</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input" name="real_name" title="真名" placeholder="请填写真名" lay-verify="required|real_name">
+      </div>
+    </div>
+    <!-- email -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">email</label>
+      <div class="layui-input-block">
+        <input type="email" class="layui-input" name="email" title="email" placeholder="请填写email" lay-verify="email">
+      </div>
+    </div>
+    <!-- 类型 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">类型</label>
+      <div class="layui-input-block">
+        <input type="radio" class="layui-input" name="type" value="2" title="普通管理员" checked>
+        <input type="radio" class="layui-input" name="type" value="1" title="超级管理员">
+      </div>
+    </div>
+    <!-- 添加按钮 -->
+    <button type="submit" class="layui-btn layui-btn-normal" id="addBtn" lay-submit lay-filter="addBtn">添 加</button>
+  </form>
+{/block}
+
+{block name="js"}
+  <script src="__PUBLIC__/js/admin/admin/admin_add.js" charset="UTF-8"></script>
+{/block}

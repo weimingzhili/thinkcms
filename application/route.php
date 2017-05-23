@@ -49,5 +49,6 @@ Route::rule('positionContent/add', 'admin/PositionContent/add', 'GET|POST');    
 Route::rule('positionContent/edit', 'admin/PositionContent/edit', 'GET|POST');   // 编辑
 
 // 管理员管理
-Route::get(['admin' => 'admin/Admin/index']);                // 列表
-Route::post(['admin/setStatus' => 'admin/Admin/setStatus']); // 设置状态
+Route::get(['admin' => 'admin/Admin/index']);                            // 列表
+Route::post(['admin/setStatus' => 'admin/Admin/setStatus']);             // 设置状态
+Route::rule('admin/add', 'admin/Admin/add', 'GET|POST');                 // 添加

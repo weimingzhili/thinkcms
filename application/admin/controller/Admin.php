@@ -36,6 +36,47 @@ class Admin extends Base
     }
 
     /**
+     * 添加，GET请求输出添加页，POST请求执行添加操作
+     * @access public
+     * @param Request $request 请求对象
+     * @return array|\think\Response
+     */
+    public function add(Request $request)
+    {
+        // 输出添加页
+        if($request->isGet()) {
+            return $this->fetch();
+        }
+
+        // 请求参数
+        $param              = [];
+        $param['account']   = $request->param('account', '', 'trim,htmlspecialchars');   // 账号
+        $param['password']  = $request->param('password', '', 'trim,htmlspecialchars');  // 密码
+        $param['real_name'] = $request->param('real_name', '', 'trim,htmlspecialchars'); // 真名
+        $param['email']     = $request->param('email', '', 'trim,htmlspecialchars');     // email
+        $param['type']      = $request->param('type', 2, 'intval');                      // 类型
+        // 验证参数
+        $checkRes = $this->validate($param, 'Admin.add');
+        if($checkRes !== true) {
+            return ['status' => 0, 'message' => $checkRes];
+        }
+
+        // 添加
+        try {
+            $adminModel = Loader::model('Admin');
+            $result     = $adminModel->adminAdd($param);
+            if($result === true) {
+                return ['status' => 1, 'message' => '添加成功'];
+            }
+
+            return ['status' => 0, 'message' => '添加失败'];
+        } catch (Exception $e) {
+            // 处理异常
+            return ['status' => 0, 'message' => $e->getMessage()];
+        }
+    }
+
+    /**
      * 设置状态
      * @access public
      * @param Request $request 请求对象
