@@ -42,6 +42,7 @@ var Common = {
     admin: '/admin',                    // 列表
     adminAdd: '/admin/add',             // 添加
     adminSetStatus: '/admin/setStatus', // 设置状态
+    personalCenter: '/personalCenter',  // 个人中心
 
     // 排序，需传入排序按钮的事件过滤器、主键和请求方法的url
     sort: function(filter, pk, url) {

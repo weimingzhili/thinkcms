@@ -1,0 +1,14 @@
+/**
+个人中心
+@author WeiZeng
+ */
+
+/* 编辑表单 */
+form {
+    width: 50%;
+    padding-top: 30px;
+}
+/* 保存按钮 */
+#saveBtn {
+    margin-left: 45%;
+}

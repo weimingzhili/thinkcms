@@ -1,0 +1,45 @@
+{extend name="base" /}
+
+{block name="css"}
+  <link rel="stylesheet" href="__PUBLIC__/css/admin/admin/personal_center.css" media="all">
+{/block}
+
+{block name="main"}
+  <!-- 面包屑导航 -->
+  <span class="layui-breadcrumb">
+    <a href="{:url('admin/Admin/personalCenter')}" title="管理员管理">管理员管理</a>
+    <a><cite>个人中心</cite></a>
+  </span>
+  <hr>
+  <!-- 编辑表单 -->
+  <form class="layui-form" role="form">
+    <!-- 账号 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">账号</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input" name="account" value="{$account}" title="账号" placeholder="请填写账号" lay-verify="required|account">
+      </div>
+    </div>
+    <!-- 真名 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">真名</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input" name="real_name" value="{$admin->real_name}" title="真名" placeholder="请填写真名" lay-verify="required|real_name">
+      </div>
+    </div>
+    <!-- email -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">email</label>
+      <div class="layui-input-block">
+        <input type="email" class="layui-input" name="email" value="{$admin->email}" title="email" placeholder="请填写email" lay-verify="email">
+      </div>
+    </div>
+    <input type="hidden" name="admin_id" value="{$admin->admin_id}">
+    <!-- 保存按钮 -->
+    <button type="submit" class="layui-btn layui-btn-normal" id="saveBtn" lay-submit lay-filter="saveBtn">保 存</button>
+  </form>
+{/block}
+
+{block name="js"}
+  <script src="__PUBLIC__/js/admin/admin/personal_center.js" charset="UTF-8"></script>
+{/block}

@@ -121,6 +121,26 @@ class Admin extends Model
     }
 
     /**
+     * 管理员更新
+     * @access public
+     * @param array $data 更新数据
+     * @return bool
+     * @throws Exception
+     */
+    public function adminUpdate($data)
+    {
+        // 更新记录
+        $result = $this->validate('Admin.save')
+                  ->allowField(['admin_id', 'account', 'real_name', 'email'])
+                  ->save($data, ['admin_id' => $data['admin_id']]);
+        if($result === false ) {
+            throw new Exception('更新出错');
+        }
+
+        return true;
+    }
+
+    /**
      * 登录验证
      * @access public
      * @param string $account 账号

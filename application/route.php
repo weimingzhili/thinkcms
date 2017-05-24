@@ -52,3 +52,4 @@ Route::rule('positionContent/edit', 'admin/PositionContent/edit', 'GET|POST');  
 Route::get(['admin' => 'admin/Admin/index']);                            // 列表
 Route::post(['admin/setStatus' => 'admin/Admin/setStatus']);             // 设置状态
 Route::rule('admin/add', 'admin/Admin/add', 'GET|POST');                 // 添加
+Route::rule('personalCenter', 'admin/Admin/personalCenter', 'GET|POST'); // 个人中心

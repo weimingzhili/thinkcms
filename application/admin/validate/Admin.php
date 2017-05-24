@@ -29,6 +29,8 @@ class Admin extends Validate
         'login'     => ['account', 'password', 'captcha'],
         // 添加
         'add' => ['account', 'password', 'real_name', 'email', 'type'],
+        // 保存
+        'save' => ['admin_id', 'account', 'real_name', 'email'],
         // 设置状态
         'setStatus' => ['admin_id', 'status'],
     ];

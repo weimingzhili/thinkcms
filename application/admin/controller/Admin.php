@@ -8,6 +8,8 @@ use think\Loader;
 
 use think\Request;
 
+use think\Session;
+
 /**
  * 管理员控制器
  * @author WeiZeng
@@ -70,6 +72,61 @@ class Admin extends Base
             }
 
             return ['status' => 0, 'message' => '添加失败'];
+        } catch (Exception $e) {
+            // 处理异常
+            return ['status' => 0, 'message' => $e->getMessage()];
+        }
+    }
+
+    /**
+     * 个人中心
+     * @access public
+     * @param Request $request 请求对象
+     * @return array
+     */
+    public function personalCenter(Request $request)
+    {
+        // 输出个人中心页
+        if($request->isGet()) {
+            // 获取管理员账号
+            $account = $request->session('admin.account', '');
+            // 获取管理员信息
+            $adminModel = Loader::model('Admin');
+            $admin      = $adminModel->getAdminByAccount($account);
+
+            // 注册数据
+            $this->assign([
+                'account'   => $account,
+                'admin'     => $admin
+            ]);
+
+            return $this->fetch();
+        }
+
+        // 请求参数
+        $param              = [];
+        $param['admin_id']  = $request->param('admin_id', 0, 'intval');                  // 主键
+        $param['account']   = $request->param('account', '', 'trim,htmlspecialchars');   // 账号
+        $param['real_name'] = $request->param('real_name', '', 'trim,htmlspecialchars'); // 真名
+        $param['email']     = $request->param('email', '', 'trim,htmlspecialchars');     // email
+        // 验证参数
+        $checkRes = $this->validate($param, 'Admin.save');
+        if($checkRes !== true) {
+            return ['status' =>0 ,'message' => $checkRes];
+        }
+
+        // 保存
+        try {
+            $adminModel = Loader::model('Admin');
+            $result     = $adminModel->adminUpdate($param);
+            if($result === true) {
+                // 更新session
+                Session::set('admin.account', $param['account']);
+
+                return ['status' => 1, 'message' => '保存成功'];
+            }
+
+            return ['status' => 0, 'message' => '保存失败'];
         } catch (Exception $e) {
             // 处理异常
             return ['status' => 0, 'message' => $e->getMessage()];
