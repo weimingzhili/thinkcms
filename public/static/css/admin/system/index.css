@@ -1,0 +1,17 @@
+/**
+系统设置
+@author WeiZeng
+ */
+
+/* 添加表单 */
+form {
+    width: 50%;
+    padding-top: 30px;
+}
+#description {
+    resize: none;
+}
+/* 添加按钮 */
+#saveBtn {
+    margin-left: 45%;
+}

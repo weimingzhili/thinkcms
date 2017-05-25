@@ -53,3 +53,7 @@ Route::get(['admin' => 'admin/Admin/index']);                            // 列�
 Route::post(['admin/setStatus' => 'admin/Admin/setStatus']);             // 设置状态
 Route::rule('admin/add', 'admin/Admin/add', 'GET|POST');                 // 添加
 Route::rule('personalCenter', 'admin/Admin/personalCenter', 'GET|POST'); // 个人中心
+
+// 系统设置
+Route::get(['system' => 'admin/System/index']);        // 设置页
+Route::post(['system/save' => 'admin/System/save']);   // 保存

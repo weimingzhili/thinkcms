@@ -1,0 +1,44 @@
+{extend name="base" /}
+
+{block name="css"}
+  <link rel="stylesheet" href="__PUBLIC__/css/admin/system/index.css" media="all">
+{/block}
+
+{block name="main"}
+  <!-- 面包屑导航 -->
+  <span class="layui-breadcrumb">
+    <a href="{:url('admin/System/index')}" title="系统设置">系统设置</a>
+    <a><cite>站点配置</cite></a>
+  </span>
+  <hr>
+  <!-- 保存表单 -->
+  <form class="layui-form" role="form">
+    <!-- 站点标题 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">站点标题</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input" name="title" value="{$title}" title="站点标题" placeholder="请填写站点标题" lay-verify="required">
+      </div>
+    </div>
+    <!-- 站点关键词 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">站点关键词</label>
+      <div class="layui-input-block">
+        <input type="text" class="layui-input" name="keywords" value="{$keywords}" title="站点关键词" placeholder="请填写站点关键词" lay-verify="required">
+      </div>
+    </div>
+    <!-- 站点描述 -->
+    <div class="layui-form-item">
+      <label class="layui-form-label">站点描述</label>
+      <div class="layui-input-block">
+        <textarea class="layui-textarea" name="description" id="description" rows="10" placeholder="请填写站点描述" lay-verify="required">{$description}</textarea>
+      </div>
+    </div>
+    <!-- 保存按钮 -->
+    <button type="submit" class="layui-btn layui-btn-normal" id="saveBtn" lay-submit lay-filter="saveBtn">添 加</button>
+  </form>
+{/block}
+
+{block name="js"}
+  <script src="__PUBLIC__/js/admin/system/index.js" charset="UTF-8"></script>
+{/block}

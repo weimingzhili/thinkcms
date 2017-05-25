@@ -44,6 +44,10 @@ var Common = {
     adminSetStatus: '/admin/setStatus', // 设置状态
     personalCenter: '/personalCenter',  // 个人中心
 
+    // 系统设置
+    system: '/system',          // 设置页
+    systemSave: '/system/save', // 保存
+
     // 排序，需传入排序按钮的事件过滤器、主键和请求方法的url
     sort: function(filter, pk, url) {
         layui.form().on('submit(' + filter + ')', function(data) {
