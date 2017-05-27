@@ -177,6 +177,40 @@ class Article extends Model
     }
 
     /**
+     * 获取文章排行
+     * @access public
+     * @return array
+     */
+    public function getTopArticles()
+    {
+        // 查询记录
+        $topArticles = self::all(function($query) {
+            $query->where(['status' => 1])
+                  ->order(['readings' => 'desc', 'article_id' => 'desc'])
+                  ->limit(5);
+        });
+
+        return $topArticles;
+    }
+
+    /**
+     * 获取文章列表
+     * @access public
+     * @return array
+     */
+    public function getArticleList()
+    {
+        // 查询记录
+        $articleList = self::all(function($query) {
+            $query->where(['status' => 1, 'thumb' => ['<>', '']])
+                  ->order(['list_order' => 'desc', 'article_id' => 'desc'])
+                  ->limit(5);
+        });
+
+        return $articleList;
+    }
+
+    /**
      * 分页
      * @access public
      * @param array $where 查询条件

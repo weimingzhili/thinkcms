@@ -1,0 +1,47 @@
+{extend name="base" }
+
+{block name="css" }
+  {__block__}
+  <link rel="stylesheet" href="__PUBLIC__/css/index/index/index.css" media="all">
+{/block}
+
+{block name="main"}
+  <!-- 轮播 -->
+  <div id="carousel">
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+        {volist name="carouselData" id="carousel"}
+          <div class="swiper-slide">
+            <a href="" title="{$carousel->title}"><img src="{$carousel->getData('thumb')}" class="collapse" alt="{$carousel->title}"></a>
+          </div>
+        {/volist}
+      </div>
+    </div>
+  </div>
+  <!-- 小图 -->
+  <div id="smallPic">
+    {volist name="smallPicData" id="smallPic"}
+      <a href="" title="{$smallPic->title}"><img src="{$smallPic->getData('thumb')}" alt="{$smallPic->title}"></a>
+    {/volist}
+  </div>
+  <!-- 文章列表 -->
+  <div id="article-list">
+    {volist name="articleList" id="article"}
+      <div>
+        <img src="{$article->getData('thumb')}" class="thumb" alt="{$article->title}">
+        <div class="article-info">
+          <h3><a href="">{$article->title}</a></h3>
+          <br>
+          <p>{$article->description}</p>
+        </div>
+        <p>关键词：{$article->keywords}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间：{$article->create_time}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读数（{$article->readings}）</p>
+      </div>
+      <hr>
+    {/volist}
+  </div>
+{/block}
+
+{block name="js"}
+  {__block__}
+  <script src="__PUBLIC__/js/index/index/index.js" charset="UTF-8"></script>
+{/block}

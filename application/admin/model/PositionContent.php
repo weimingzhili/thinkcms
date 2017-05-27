@@ -124,6 +124,57 @@ class PositionContent extends Model
     }
 
     /**
+     * 获取轮播图数据
+     * @access public
+     * @return array
+     */
+    public function getCarousel()
+    {
+        // 查询记录
+        $carouselData = self::all(function($query) {
+            $query->where(['position_id' => 1, 'status' => 1])
+                  ->order(['list_order' => 'desc', 'position_content_id' => 'desc'])
+                  ->limit(4);
+        });
+
+        return $carouselData;
+    }
+
+    /**
+     * 获取小图推荐数据
+     * @access public
+     * @return array
+     */
+    public function getSmallPic()
+    {
+        // 查询记录
+        $smallPicData = self::all(function($query) {
+            $query->where(['position_id' => 2, 'status' => 1])
+                  ->order(['list_order' => 'desc', 'position_content_id' => 'desc'])
+                  ->limit(3);
+        });
+
+        return $smallPicData;
+    }
+
+    /**
+     * 获取广告位数据
+     * @access public
+     * @return array
+     */
+    public function getAd()
+    {
+        // 查询记录
+        $adData = self::all(function($query) {
+            $query->where(['position_id' => 3, 'status' => 1])
+                  ->order(['list_order' => 'desc', 'position_content_id' => 'desc'])
+                  ->limit(2);
+        });
+
+        return $adData;
+    }
+
+    /**
      * 分页
      * @access public
      * @param array $where 查询条件

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Think资讯</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" media="all">
+    <!-- 引入swiper css文件 -->
+    <link rel="stylesheet" href="__PUBLIC__/plugins/swiper/swiper-2.7.6.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/css/index/base.css" media="all">
+    {block name="css"}{/block}
+  </head>
+  <body>
+    <!-- 栏目导航 -->
+    <header>
+      <nav id="columnNav">
+        <ul class="layui-nav">
+          <li class="layui-nav-item brand"><a href="/">Think资讯</a></li>
+          <li class="layui-nav-item nav-item {:highLight('Index')}"><a href="/">首页</a></li>
+          {volist name="columnData" id="menu"}
+            <li class="layui-nav-item nav-item {:highLight($menu->controller)}"><a href="javascript:void(0);">{$menu->menu_name}</a></li>
+          {/volist}
+        </ul>
+      </nav>
+    </header>
+
+    <!-- 主体 -->
+    <div id="main">
+      <!-- 主内容 -->
+      <div id="box">
+        {block name="main"}{/block}
+      </div>
+      <aside>
+        <!-- 文章排行 -->
+        <div id="topArticles">
+          <h2>文章排行</h2>
+          <p>TOP ARTICLES</p>
+          <hr>
+          <ul>
+            {volist name="topArticles" id="topArticle" key="key"}
+              {eq name="key" value="1"}
+                <li>
+                  <span class="first-article">{$key}. </span>
+                  <a href="" class="first-article-title">{$topArticle->title}</a>
+                  <p>{$topArticle->description}</p>
+                </li>
+              {else /}
+                <li><span>{$key}. </span><a href="">{$topArticle->title}</a></li>
+              {/eq}
+            {/volist}
+          </ul>
+        </div>
+        <!-- 广告位 -->
+        <div id="ad">
+          {volist name="adData" id="ad"}
+            <a href="" title="{$ad->title}"><img src="{$ad->getData('thumb')}" alt="{$ad->title}"></a>
+          {/volist}
+        </div>
+      </aside>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="layui-bg-gray" id="footer">
+      <p>&copy; 2017 ThinkCMS Apache License</p>
+    </footer>
+
+    <script src="__PUBLIC__/js/jquery-1.11.3.min.js" charset="utf-8"></script>
+    <script src="__PUBLIC__/layui/lay/dest/layui.all.js" charset="UTF-8"></script>
+    <!-- 引入swiper js文件 -->
+    <script src="__PUBLIC__/plugins/swiper/swiper-2.7.6.min.js" charset="UTF-8"></script>
+    <script src="__PUBLIC__/js/index/base.js" charset="UTF-8"></script>
+    {block name="js"}{/block}
+  </body>
+</html>
+

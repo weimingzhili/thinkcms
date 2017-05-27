@@ -1,0 +1,119 @@
+/**
+基础模板
+@author WeiZeng
+ */
+
+/* 全局样式 */
+body {
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* 栏目导航 */
+#columnNav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 1px 1px #1aa094;
+    z-index: 9999999;
+}
+#columnNav ul {
+    border-radius: 0;
+}
+#columnNav .nav-item {
+    width: 7%;
+}
+#columnNav ul a {
+    border-radius: 0;
+    text-align: center;
+    font-size: 16px;
+}
+#columnNav .brand {
+    margin-left: 10%;
+    margin-right: 7%;
+}
+#columnNav .brand a {
+    font-size: 24px;
+}
+
+/* 主体 */
+#main {
+    width: 1140px;
+    height: 200px;
+    margin-top: 80px;
+    position: relative;
+    left: 50%;
+    margin-left: -570px;
+    margin-bottom: 30px;
+}
+/* 主内容 */
+#box {
+    width: 800px;
+    float: left;
+}
+
+/* 侧栏 */
+aside {
+    float: left;
+    margin-left: 40px;
+    width: 300px;
+}
+/* 文章排行 */
+#topArticles {
+    padding: 20px;
+}
+#topArticles h2 {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 1.5em;
+}
+#topArticles > p {
+    margin-top: 5px;
+    text-align: center;
+    color: #c2c2c2;
+}
+#topArticles li {
+    font-size: 16px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+#topArticles li span {
+    font-size: 18px;
+}
+#topArticles li p {
+    text-indent: 1.5em;
+    font-size: 14px;
+    color: #c2c2c2;
+}
+.first-article {
+    font-size: 18px;
+    color: #f00;
+    font-weight: bold;
+}
+.first-article-title {
+    font-weight: bold;
+}
+
+/* 广告位 */
+#ad {
+    width: 300px;
+}
+#ad img {
+    width: 300px;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+/* 页脚 */
+#footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: 60px;
+    line-height: 60px;
+}
+#footer p {
+    text-align: center;
+}

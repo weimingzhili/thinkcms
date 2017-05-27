@@ -207,10 +207,10 @@ class Article extends Base
 
         // 验证并移动到上传目录下
         $fileInfo = $file->validate(['ext' => 'jpg,png,gif', 'size' => 1048576])
-                    ->move(ROOT_PATH . 'public' . DS . self::UPLOAD_DIR);
+                    ->move(ROOT_PATH . 'public' . DS . 'static'. DS . self::UPLOAD_DIR);
         if($fileInfo) {
             // 若移动成功，返回上传路径
-            $uploadPath = DS . self::UPLOAD_DIR . DS . $fileInfo->getSaveName();
+            $uploadPath = DS . 'static'. DS . self::UPLOAD_DIR . DS . $fileInfo->getSaveName();
 
             return json(['code' => 0, 'data' => ['src' => $uploadPath]]);
         }
