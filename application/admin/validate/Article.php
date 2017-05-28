@@ -22,33 +22,36 @@ class Article extends Validate
         'admin|管理员账号'    => 'require|require|alphaDash|max:20',
         'status|状态'         => 'require|number|in:-1,0,1',
         'content|文章内容'    => 'require|max:65532',
+        'readings|阅读数'     => 'require|number|egt:0',
         'pushData'           => 'checkPush',
     ];
 
     // 验证场景
     protected $scene = [
         // 主键
-        'pk'          => 'article_id',
+        'pk'             => 'article_id',
         // 筛选
-        'filter'      => ['column_id' => 'number', 'title' => 'max:60'],
+        'filter'         => ['column_id' => 'number', 'title' => 'max:60'],
         // 排序
-        'sort'        => ['article_id', 'list_order'],
+        'sort'           => ['article_id', 'list_order'],
         // 设置状态
-        'setStatus'   => ['article_id', 'status'],
+        'setStatus'      => ['article_id', 'status'],
         // 添加
-        'add'         => ['title', 'subtitle', 'thumb', 'column_id', 'source', 'content', 'description', 'keywords', 'admin'],
+        'add'            => ['title', 'subtitle', 'thumb', 'column_id', 'source', 'content', 'description', 'keywords', 'admin'],
         // 添加文章
-        'addArticle'  => ['title', 'subtitle', 'thumb', 'column_id', 'source', 'description', 'keywords', 'admin'],
+        'addArticle'     => ['title', 'subtitle', 'thumb', 'column_id', 'source', 'description', 'keywords', 'admin'],
         // 添加文章内容
-        'addContent'  => ['article_id', 'content'],
+        'addContent'     => ['article_id', 'content'],
         // 保存
-        'save'        => ['title', 'subtitle', 'thumb', 'column_id', 'source', 'content', 'description', 'keywords', 'admin', 'article_id'],
+        'save'           => ['title', 'subtitle', 'thumb', 'column_id', 'source', 'content', 'description', 'keywords', 'admin', 'article_id'],
         // 保存文章
-        'saveArticle' => ['title', 'subtitle', 'thumb', 'column_id', 'source', 'description', 'keywords', 'admin', 'article_id'],
+        'saveArticle'    => ['title', 'subtitle', 'thumb', 'column_id', 'source', 'description', 'keywords', 'admin', 'article_id'],
         // 保存文章内容
-        'saveContent' => ['article_id', 'content'],
+        'saveContent'    => ['article_id', 'content'],
         // 推送
-        'push'        => 'pushData',
+        'push'           => 'pushData',
+        // 更新阅读数
+        'updateReadings' => ['article_id', 'readings'],
     ];
 
     /**

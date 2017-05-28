@@ -35,6 +35,15 @@ class Detail extends Base
             throw new HttpException('404');
         }
 
+        // 更新阅读数
+        $result = $articleModel->updateReadings([
+            'article_id' => $articleData->article_id,
+            'readings'   => $articleData->readings
+        ]);
+        if($result === false) {
+            $this->error('文章阅读数更新失败');
+        }
+
         // 注册数据
         $this->assign([
             'articleData' => $articleData,

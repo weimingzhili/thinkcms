@@ -12,7 +12,7 @@
       <div class="swiper-wrapper">
         {volist name="carouselData" id="carousel"}
           <div class="swiper-slide">
-            <a href="" title="{$carousel->title}"><img src="{$carousel->getData('thumb')}" class="collapse" alt="{$carousel->title}"></a>
+            <a href="{:url('index/Detail/index', ['article_id' => $carousel->article_id])}" title="{$carousel->title}"><img src="{$carousel->getData('thumb')}" class="collapse" alt="{$carousel->title}"></a>
           </div>
         {/volist}
       </div>
@@ -21,7 +21,7 @@
   <!-- 小图 -->
   <div id="smallPic">
     {volist name="smallPicData" id="smallPic"}
-      <a href="" title="{$smallPic->title}"><img src="{$smallPic->getData('thumb')}" alt="{$smallPic->title}"></a>
+      <a href="{:url('index/Detail/index', ['article_id' => $smallPic->article_id])}" title="{$smallPic->title}"><img src="{$smallPic->getData('thumb')}" alt="{$smallPic->title}"></a>
     {/volist}
   </div>
   <!-- 文章列表 -->

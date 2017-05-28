@@ -342,4 +342,22 @@ class Article extends Model
 
         return true;
     }
+
+    /**
+     * 更新文章阅读数
+     * @access public
+     * @param array $data 更新数据
+     * @return int|bool
+     */
+    public function updateReadings($data)
+    {
+        // 增加阅读数
+        $data['readings']++;
+
+        // 更新记录
+        $result = $this->validate('admin/Article.updateReadings')
+                  ->save($data, ['article_id' => $data['article_id']]);
+
+        return $result;
+    }
 }
