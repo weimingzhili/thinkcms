@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>您所访问的页面不存在</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="__PUBLIC__/css/index/404.css" media="all">
+  </head>
+  <body>
+    <!-- 栏目导航 -->
+    <header>
+      <nav id="columnNav">
+        <ul class="layui-nav">
+          <li class="layui-nav-item brand"><a href="/">Think资讯</a></li>
+          <li class="layui-nav-item nav-item {eq name="column_id" value="0"}layui-this{/eq}"><a href="/">首页</a></li>
+          {volist name="columnData" id="menu"}
+          <li class="layui-nav-item nav-item {eq name="column_id" value="$menu->menu_id"}layui-this{/eq}"><a href="{:url('index/Column/index', ['column_id' => $menu->menu_id])}">{$menu->menu_name}</a></li>
+          {/volist}
+        </ul>
+      </nav>
+    </header>
+
+    <!-- 主体 -->
+    <div id="main">
+      <i class="layui-icon lose-icon">&#xe61c;</i>
+      <h1>抱歉！您所访问的页面不存在</h1>
+      <p>
+        <a href="/">返回首页</a> | <a href="javascript:history.go(-1);">返回上一页</a>
+      </p>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="layui-bg-gray" id="footer">
+      <p>&copy; 2017 ThinkCMS Apache License</p>
+    </footer>
+
+    <script src="/static/js/jquery.min.js" charset="utf-8"></script>
+    <script src="/static/layui/lay/dest/layui.all.js" charset="UTF-8"></script>
+  </body>
+</html>

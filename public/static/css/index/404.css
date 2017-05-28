@@ -1,0 +1,75 @@
+/**
+404页面
+@author WeiZeng
+ */
+
+/* 全局样式 */
+body {
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+/* 栏目导航 */
+#columnNav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    box-shadow: 0 1px 1px #1aa094;
+    z-index: 9999999;
+}
+#columnNav ul {
+    border-radius: 0;
+}
+#columnNav .nav-item {
+    width: 7%;
+}
+#columnNav ul a {
+    border-radius: 0;
+    text-align: center;
+    font-size: 16px;
+}
+#columnNav .brand {
+    margin-left: 10%;
+    margin-right: 7%;
+}
+#columnNav .brand a {
+    font-size: 24px;
+}
+
+/* 主体 */
+#main {
+    width: 800px;
+    height: 60px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -280px;
+    margin-left: -400px;
+}
+#main .lose-icon {
+    font-size: 360px;
+    margin-left: 220px;
+}
+#main h1 {
+    font-size: 2em;
+    color: #FF6838;
+    text-align: center;
+    margin-bottom: 10px;
+}
+#main p {
+    font-size: 16px;
+    text-align: center;
+}
+
+/* 页脚 */
+#footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    height: 60px;
+    line-height: 60px;
+}
+#footer p {
+    text-align: center;
+}

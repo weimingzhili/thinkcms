@@ -32,7 +32,7 @@ class Detail extends Base
         $articleModel = Loader::model('admin/Article');
         $articleData  = $articleModel->getArticleData($article_id);
         if(empty($articleData)) {
-            $this->error('文章内容获取失败');
+            throw new HttpException('404');
         }
 
         // 注册数据
