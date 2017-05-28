@@ -105,3 +105,20 @@ $('.editBtn').click(function() {
     // 转到编辑页
     window.location.href = Common.articleEdit + '.html?article_id=' + article_id;
 });
+
+// 预览
+$('.previewBtn').click(function() {
+    // 获取文章id
+    var article_id = $(this).data('article_id');
+    if(!article_id) {
+        layer.alert('发生错误', {
+            title: '错误提示',
+            icon: 2
+        });
+
+        return false;
+    }
+
+    // 转到文章详情页
+    window.location.href = '/detail/' + article_id + '.html';
+});

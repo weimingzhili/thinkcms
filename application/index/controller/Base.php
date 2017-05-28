@@ -21,6 +21,10 @@ class Base extends Controller
         // 继承父类的初始化方法
         parent::_initialize();
 
+        // 获取站点信息
+        $systemModel  = Loader::model('admin/System');
+        $siteSettings = $systemModel->getSiteSettings();
+
         // 获取栏目导航
         $menuModel  = Loader::model('admin/Menu');
         $columnData = $menuModel->getColumnAll();
@@ -38,10 +42,11 @@ class Base extends Controller
 
         // 注册数据
         $this->assign([
-            'columnData'  => $columnData,
-            'topArticles' => $topArticles,
-            'adData'      => $adData,
-            'column_id'   => $column_id,
+            'siteSettings' => $siteSettings,
+            'columnData'   => $columnData,
+            'topArticles'  => $topArticles,
+            'adData'       => $adData,
+            'column_id'    => $column_id,
         ]);
     }
 }
