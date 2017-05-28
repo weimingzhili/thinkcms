@@ -18,9 +18,9 @@
       <nav id="columnNav">
         <ul class="layui-nav">
           <li class="layui-nav-item brand"><a href="/">Think资讯</a></li>
-          <li class="layui-nav-item nav-item {:highLight('Index')}"><a href="/">首页</a></li>
+          <li class="layui-nav-item nav-item {eq name="column_id" value="0"}layui-this{/eq}"><a href="/">首页</a></li>
           {volist name="columnData" id="menu"}
-            <li class="layui-nav-item nav-item {:highLight($menu->controller)}"><a href="javascript:void(0);">{$menu->menu_name}</a></li>
+            <li class="layui-nav-item nav-item {eq name="column_id" value="$menu->menu_id"}layui-this{/eq}"><a href="{:url('index/Column/index', ['column_id' => $menu->menu_id])}">{$menu->menu_name}</a></li>
           {/volist}
         </ul>
       </nav>
@@ -43,11 +43,11 @@
               {eq name="key" value="1"}
                 <li>
                   <span class="first-article">{$key}. </span>
-                  <a href="" class="first-article-title">{$topArticle->title}</a>
+                  <a href="{:url('index/Detail/index', ['article_id' => $topArticle->article_id])}" class="first-article-title">{$topArticle->title}</a>
                   <p>{$topArticle->description}</p>
                 </li>
               {else /}
-                <li><span>{$key}. </span><a href="">{$topArticle->title}</a></li>
+                <li><span>{$key}. </span><a href="{:url('index/Detail/index', ['article_id' => $topArticle->article_id])}">{$topArticle->title}</a></li>
               {/eq}
             {/volist}
           </ul>
@@ -55,7 +55,7 @@
         <!-- 广告位 -->
         <div id="ad">
           {volist name="adData" id="ad"}
-            <a href="" title="{$ad->title}"><img src="{$ad->getData('thumb')}" alt="{$ad->title}"></a>
+            <a href="{:url('index/Detail/index', ['article_id' => $ad->article_id])}" title="{$ad->title}"><img src="{$ad->getData('thumb')}" alt="{$ad->title}"></a>
           {/volist}
         </div>
       </aside>

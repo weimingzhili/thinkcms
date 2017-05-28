@@ -211,6 +211,23 @@ class Article extends Model
     }
 
     /**
+     * 获取栏目文章列表
+     * @access public
+     * @param int $column_id 栏目id
+     * @return \think\Collection
+     */
+    public function getColumnArticleList($column_id)
+    {
+        // 查询记录
+        $columnArticleList = self::where(['column_id' => $column_id, 'status' => 1])
+                             ->order(['list_order' => 'desc', 'article_id' => 'desc'])
+                             ->limit(7)
+                             ->select();
+
+        return $columnArticleList;
+    }
+
+    /**
      * 分页
      * @access public
      * @param array $where 查询条件

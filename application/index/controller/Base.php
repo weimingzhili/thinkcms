@@ -33,11 +33,15 @@ class Base extends Controller
         $positionContentModel = Loader::model('admin/PositionContent');
         $adData = $positionContentModel->getAd();
 
+        // 获取栏目id
+        $column_id = $this->request->param('column_id', 0, 'intval');
+
         // 注册数据
         $this->assign([
             'columnData'  => $columnData,
             'topArticles' => $topArticles,
             'adData'      => $adData,
+            'column_id'   => $column_id,
         ]);
     }
 }

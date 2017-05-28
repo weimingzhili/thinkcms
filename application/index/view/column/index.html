@@ -1,0 +1,29 @@
+{extend name="base" /}
+
+{block name="css"}
+  {__block__}
+  <link rel="stylesheet" href="__PUBLIC__/css/index/column.css" media="all">
+{/block}
+
+{block name="main"}
+  <!-- 栏目文章列表 -->
+  <div id="article-list">
+    {volist name="columnArticleList" id="article"}
+    <div>
+      <img src="{$article->getData('thumb')}" class="thumb" alt="{$article->title}">
+      <div class="article-info">
+        <h3><a href="{:url('index/Detail/index', ['article_id' => $article->article_id])}">{$article->title}</a></h3>
+        <br>
+        <p>{$article->description}</p>
+      </div>
+      <p>关键词：{$article->keywords}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;时间：{$article->create_time}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;阅读数（{$article->readings}）</p>
+    </div>
+    <hr>
+    {/volist}
+  </div>
+{/block}
+
+{block name="js"}
+  {__block__}
+  <script src="__PUBLIC__/js/index/column.js" charset="UTF-8"></script>
+{/block}

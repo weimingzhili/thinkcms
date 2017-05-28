@@ -32,10 +32,14 @@ class Base extends Controller
         // 获取导航菜单
         $naves = $this->getNav();
 
+        // 获取当前访问的控制器
+        $currentController = $this->request->controller();
+
         // 注册数据
         $this->assign([
-            'account'    => $account,
-            'naves'      => $naves,
+            'account'           => $account,
+            'naves'             => $naves,
+            'currentController' => $currentController,
         ]);
     }
 

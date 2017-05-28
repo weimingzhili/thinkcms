@@ -57,3 +57,7 @@ Route::rule('personalCenter', 'admin/Admin/personalCenter', 'GET|POST'); // 个�
 // 系统设置
 Route::get(['system' => 'admin/System/index']);        // 设置页
 Route::post(['system/save' => 'admin/System/save']);   // 保存
+
+// 前台
+Route::get(['column/:column_id' => 'index/Column/index']);  // 栏目页
+Route::get(['detail/:article_id' => 'index/Detail/index']); // 文章详情页

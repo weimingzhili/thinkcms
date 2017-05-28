@@ -31,9 +31,9 @@
     <aside>
       <nav id="asideNav">
         <ul class="layui-nav layui-nav-tree layui-nav-side">
-          <li class="layui-nav-item {:highLight('Index')}"><a href="{:url('admin/Index/index')}">首页</a></li>
+          <li class="layui-nav-item {eq name="currentController" value="Index"}layui-this{/eq}"><a href="{:url('admin/Index/index')}">首页</a></li>
           {volist name="naves" id="nav"}
-          <li class="layui-nav-item {:highLight($nav->controller)}"><a href="{:url($nav->module . '/' . $nav->controller . '/' . $nav->action)}">{$nav->menu_name}</a></li>
+          <li class="layui-nav-item {eq name="currentController" value="$nav->controller"}layui-this{/eq}"><a href="{:url($nav->module . '/' . $nav->controller . '/' . $nav->action)}">{$nav->menu_name}</a></li>
           {/volist}
         </ul>
       </nav>

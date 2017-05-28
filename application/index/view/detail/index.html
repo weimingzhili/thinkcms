@@ -1,0 +1,17 @@
+{extend name="base" /}
+
+{block name="css"}
+  {__block__}
+  <link rel="stylesheet" href="__PUBLIC__/css/index/detail.css" media="all">
+{/block}
+
+{block name="main"}
+  <!-- 文章详情 -->
+  <h1>{$articleData->title}</h1>
+  {$articleData->articleContent->content}
+{/block}
+
+{block name="js"}
+  {__block__}
+  <script src="__PUBLIC__/js/index/detail.js" charset="UTF-8"></script>
+{/block}

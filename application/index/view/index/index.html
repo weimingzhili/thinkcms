@@ -1,8 +1,8 @@
 {extend name="base" }
 
-{block name="css" }
+{block name="css"}
   {__block__}
-  <link rel="stylesheet" href="__PUBLIC__/css/index/index/index.css" media="all">
+  <link rel="stylesheet" href="__PUBLIC__/css/index/index.css" media="all">
 {/block}
 
 {block name="main"}
@@ -30,7 +30,7 @@
       <div>
         <img src="{$article->getData('thumb')}" class="thumb" alt="{$article->title}">
         <div class="article-info">
-          <h3><a href="">{$article->title}</a></h3>
+          <h3><a href="{:url('index/Detail/index', ['article_id' => $article->article_id])}">{$article->title}</a></h3>
           <br>
           <p>{$article->description}</p>
         </div>
@@ -43,5 +43,5 @@
 
 {block name="js"}
   {__block__}
-  <script src="__PUBLIC__/js/index/index/index.js" charset="UTF-8"></script>
+  <script src="__PUBLIC__/js/index/index.js" charset="UTF-8"></script>
 {/block}

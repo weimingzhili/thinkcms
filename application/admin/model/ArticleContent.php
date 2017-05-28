@@ -17,6 +17,17 @@ class ArticleContent extends Model
     protected $update = ['update_time'];
 
     /**
+     * 文章内容获取器
+     * @access public
+     * @param string $content 文章内容
+     * @return string
+     */
+    public function getContentAttr($content)
+    {
+        return htmlspecialchars_decode($content);
+    }
+
+    /**
      * 创建时间修改器
      * @access public
      * @return int

@@ -99,6 +99,7 @@ aside {
 /* 广告位 */
 #ad {
     width: 300px;
+    margin-bottom: 60px;
 }
 #ad img {
     width: 300px;

@@ -1,0 +1,32 @@
+/**
+栏目页
+@author WeiZeng
+ */
+
+/* 文章列表 */
+#article-list {
+    float: left;
+    margin-top: 30px;
+    margin-bottom: 60px;
+    width: 800px;
+}
+#article-list .thumb {
+    float: left;
+    width: 200px;
+    height: 120px;
+    margin-bottom: 20px;
+}
+#article-list .article-info {
+    float: left;
+    height: 100px;
+    margin-left: 20px;
+}
+#article-list .article-info a {
+    font-size: 1.17em;
+    font-weight: bold;
+    color: #427594;
+}
+#article-list > div > p {
+    float: left;
+    margin-left: 20px;
+}
