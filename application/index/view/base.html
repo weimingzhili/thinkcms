@@ -57,7 +57,7 @@
         <!-- 广告位 -->
         <div id="ad">
           {volist name="adData" id="ad"}
-            <a href="{:url('index/Detail/index', ['article_id' => $ad->article_id])}" title="{$ad->title}"><img src="{$ad->getData('thumb')}" alt="{$ad->title}"></a>
+            <a href="{$ad->address}" target="_blank" title="{$ad->title}"><img src="{$ad->getData('thumb')}" alt="{$ad->title}"></a>
           {/volist}
         </div>
       </aside>
@@ -72,7 +72,6 @@
     <script src="__PUBLIC__/layui/lay/dest/layui.all.js" charset="UTF-8"></script>
     <!-- 引入swiper js文件 -->
     <script src="__PUBLIC__/plugins/swiper/swiper-2.7.6.min.js" charset="UTF-8"></script>
-    <script src="__PUBLIC__/js/index/base.js" charset="UTF-8"></script>
     {block name="js"}{/block}
   </body>
 </html>
