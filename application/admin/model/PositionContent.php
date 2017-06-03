@@ -265,6 +265,12 @@ class PositionContent extends Model
 
         foreach ($data['pushData']['articleIdData'] as $value) {
             $articlePushData = $articleModel->getPushData($value['article_id']);
+
+            // 判断文章数据是否存在
+            if(empty($articlePushData)) {
+                throw new Exception('文章数据获取失败');
+            }
+
             $pushData[] = [
                 'article_id'  => $value['article_id'],
                 'position_id' => $data['pushData']['position_id'],

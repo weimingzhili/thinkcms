@@ -23,7 +23,7 @@ class Column extends Base
     public function index(Request $request)
     {
         // 获取栏目id
-        $column_id = $request->param('column_id', 0, 'intval'); // 栏目id
+        $column_id = $request->param('column_id', 0, 'intval');
         if(!preg_match('/^[1-9]\d*$/', $column_id)) {
             throw new HttpException('404');
         }
